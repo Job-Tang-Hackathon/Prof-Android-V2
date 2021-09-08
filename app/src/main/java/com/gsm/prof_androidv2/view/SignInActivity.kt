@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -19,6 +20,7 @@ import com.gsm.prof_androidv2.viewmodel.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+@AndroidEntryPoint
 class SignInActivity : AppCompatActivity() {
     private val binding by lazy { ActivitySignInBinding.inflate(layoutInflater) }
     private val signInViewModel by viewModels<SignInViewModel>()
@@ -33,7 +35,7 @@ class SignInActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.activity = this
         initGoogleLogin()
-
+        observeViewModel()
     }
 
     fun googleLoginBtnClick(view: View){
@@ -46,7 +48,8 @@ class SignInActivity : AppCompatActivity() {
     }
 
     fun loginBtnClick(view: View){
-
+        Log.d(TAG,"email : ${binding.email.text.toString()}, password : ${binding.password.text.toString()}")
+        signInViewModel.signIn(binding.email.text.toString(),binding.password.text.toString())
     }
 
     private fun initGoogleLogin(){
@@ -55,6 +58,15 @@ class SignInActivity : AppCompatActivity() {
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(this,gso)
+    }
+
+    private fun observeViewModel(){
+        signInViewModel.signInResponse.observe(this, Observer {
+            when(it){
+                0 -> Toast.makeText(this,"이메일 또는 비밀번호가 틀렸습니다",Toast.LENGTH_SHORT).show()
+                1 -> Toast.makeText(this,"로그인에 성공하였습니다",Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

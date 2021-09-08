@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".view.SignInActivity">
 
         <androidx.core.widget.NestedScrollView
@@ -89,6 +90,7 @@
                     android:gravity="center"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="20dp"
+                    android:onClick="@{activity::loginBtnClick}"
                     android:layout_marginStart="20dp"
                     android:includeFontPadding="false"
                     android:padding="17dp"
