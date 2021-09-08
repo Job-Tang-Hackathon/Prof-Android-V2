@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProfAndroidV2">
         <activity
+            android:name=".view.SignUpActivity"
+            android:exported="true" />
+        <activity
             android:name=".view.SplashActivity"
             android:exported="true" />
         <activity
