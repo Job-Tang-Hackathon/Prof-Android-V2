@@ -8,16 +8,20 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.activity.viewModels
 import com.gsm.prof_androidv2.R
 import com.gsm.prof_androidv2.databinding.ActivitySignUpBinding
 import com.gsm.prof_androidv2.viewmodel.SignUpViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import com.gsm.prof_androidv2.databinding.ActivitySignInBinding
+import com.gsm.prof_androidv2.viewmodel.SignInViewModel
 
 @AndroidEntryPoint
 class SignUpActivity : AppCompatActivity() {
     private val binding by lazy { ActivitySignUpBinding.inflate(layoutInflater) }
     private val signUpViewModel by viewModels<SignUpViewModel>()
     private val TAG = "SignUp"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
