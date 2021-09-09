@@ -11,10 +11,7 @@
         android:theme="@style/Theme.ProfAndroidV2">
         <activity
             android:name=".view.CategoryActivity"
-            android:exported="true" >
-        android:usesCleartextTraffic="true"
-        android:name=".utils.App"
-        android:theme="@style/Theme.ProfAndroidV2">
+            android:exported="true" />
         <activity
             android:name=".view.SplashActivity"
             android:exported="true" />
