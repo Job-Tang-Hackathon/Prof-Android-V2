@@ -40,8 +40,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupSpinnerTag()
         setupSpinnerHandler()
+        firstSpinner()
         observeViewModel()
         initViewPagerTabLayout()
+    }
+
+    private fun firstSpinner(){
+        val state : Int = when(intent.getStringExtra("state")){
+            "android" -> 1
+            "ios" -> 2
+            "frontend" -> 3
+            "backend" -> 4
+            "ai" -> 5
+            "game" -> 6
+            "iot" -> 7
+            "infosecurity" -> 8
+            "robotics" -> 9
+            else -> 0
+        }
+        binding.spinner.setSelection(state)
     }
 
     private fun initViewPagerTabLayout(){
@@ -71,11 +88,25 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.getCategoryPost(state)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    mainViewModel.setGetPostResponse(task)
-                    for (document in task.result) {
-                        Log.d("로그", document.id + " => " + document.data + "오우야 : "+task.result)
+                    if (task != null){
+                        Log.d("로그","if  task != null")
+
+                        mainViewModel.setGetPostResponse(task)
+                       // Log.d("로그","task.result.documents : ${task.result.documents}")
+                        if (task.result.documents.toString() == "[]"){
+                            Log.d("로그","task.result.documents 널")
+                            mainViewModel.setGetPostNull(true)
+                        }
+               /*         for (document in task.result) {
+                            Log.d("로그", document.id + " => " + document.data + "오우야 : "+task.result)
+
+                        }*/
+                    }else{
+                        Log.d("로그","else  task != null")
 
                     }
+                }else{
+                    Log.d("로그","isSuccessful")
                 }
             }
           /*  .addOnSuccessListener { document ->
@@ -88,6 +119,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }*/
             .addOnFailureListener { exception ->
+                Log.d("로그","addOnFailureListener : $exception")
                 Toast.makeText(this,"서버에 오류가 발생했습니다",Toast.LENGTH_SHORT).show()
             }
     }

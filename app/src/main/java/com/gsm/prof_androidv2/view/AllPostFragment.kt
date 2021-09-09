@@ -35,8 +35,6 @@ class AllPostFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater,R.layout.fragment_all_post,container,false)
         observeViewModel()
 
-        //arguments?.getString("state")?.let { getCategoryPost(it) }
-        //getCategoryPost("android")
         return binding.root
     }
 
@@ -65,10 +63,21 @@ class AllPostFragment : Fragment() {
 
     private fun observeViewModel(){
         mainViewModel.getPostResponse.observe(requireActivity(), androidx.lifecycle.Observer {
-            Toast.makeText(requireContext(),"$it", Toast.LENGTH_SHORT).show()
-            for (document in it.result) {
-                Log.d("로그","옵져버 : ${document.data}")
-                initRecyclerView()
+            if (it !=null){
+                for (document in it.result) {
+                    Log.d("로그","옵져버 : ${document.data}")
+                    initRecyclerView()
+                }
+            }else{
+                Log.d("로그","옵져버 널")
+
+            }
+
+        })
+
+        mainViewModel.getPostNull.observe(requireActivity(), androidx.lifecycle.Observer {
+            if(it == true){
+                binding.notFound.visibility = View.VISIBLE
             }
         })
     }
