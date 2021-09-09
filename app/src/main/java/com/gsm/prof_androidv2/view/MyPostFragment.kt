@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gsm.prof_androidv2.R
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MyPostFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
