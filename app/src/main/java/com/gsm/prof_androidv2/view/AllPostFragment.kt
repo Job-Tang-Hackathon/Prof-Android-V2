@@ -43,41 +43,30 @@ class AllPostFragment : Fragment() {
         binding.allPostRecyclerView.adapter = MainRecyclerAdapter(mainViewModel)
     }
 
-/*    //Post 가져오기
-    private fun getCategoryPost(state:String){
-        Log.d("로그","getCategoryPost 안")
-        mainViewModel.getCategoryPost(state)
-            .addOnSuccessListener { document ->
-                if (document != null) {
-                    mainViewModel.setGetPostResponse(document)
-                    Log.d("그그","$document")
-                } else {
-                    Toast.makeText(requireContext(),"서버에 오류가 발생했습니다",Toast.LENGTH_SHORT).show()
-                }
-            }
-            .addOnFailureListener { exception ->
-                Toast.makeText(requireContext(),"서버에 오류가 발생했습니다",Toast.LENGTH_SHORT).show()
-            }
-    }*/
-
-
     private fun observeViewModel(){
         mainViewModel.getPostResponse.observe(requireActivity(), androidx.lifecycle.Observer {
+            //게시물 있음
             if (it !=null){
                 for (document in it.result) {
                     Log.d("로그","옵져버 : ${document.data}")
                     initRecyclerView()
+                    mainViewModel.setGetPostNull(false)
                 }
             }else{
+                //게시물 없음
                 Log.d("로그","옵져버 널")
-
+                mainViewModel.setGetPostNull(true)
             }
 
         })
 
         mainViewModel.getPostNull.observe(requireActivity(), androidx.lifecycle.Observer {
             if(it == true){
+                binding.allPostRecyclerView.visibility = View.GONE
                 binding.notFound.visibility = View.VISIBLE
+            }else{
+                binding.allPostRecyclerView.visibility = View.VISIBLE
+                binding.notFound.visibility = View.GONE
             }
         })
     }

@@ -92,32 +92,16 @@ class MainActivity : AppCompatActivity() {
                         Log.d("로그","if  task != null")
 
                         mainViewModel.setGetPostResponse(task)
-                       // Log.d("로그","task.result.documents : ${task.result.documents}")
-                        if (task.result.documents.toString() == "[]"){
-                            Log.d("로그","task.result.documents 널")
+                        if (task.result.documents.toString() == "[]") {
                             mainViewModel.setGetPostNull(true)
                         }
-               /*         for (document in task.result) {
-                            Log.d("로그", document.id + " => " + document.data + "오우야 : "+task.result)
-
-                        }*/
                     }else{
                         Log.d("로그","else  task != null")
-
                     }
                 }else{
                     Log.d("로그","isSuccessful")
                 }
             }
-          /*  .addOnSuccessListener { document ->
-                for ()
-                if (document != null) {
-                    mainViewModel.setGetPostResponse(document)
-                    Log.d("그그","$document")
-                } else {
-                    Toast.makeText(this,"서버에 오류가 발생했습니다",Toast.LENGTH_SHORT).show()
-                }
-            }*/
             .addOnFailureListener { exception ->
                 Log.d("로그","addOnFailureListener : $exception")
                 Toast.makeText(this,"서버에 오류가 발생했습니다",Toast.LENGTH_SHORT).show()
@@ -145,50 +129,54 @@ class MainActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
+                var state = "all"
                 when (position) {
                     0 -> {
                         tag = "전체"
+                        state = "all"
                     }
                     1 -> {
                         tag = "안드로이드"
-
+                        state = "android"
                     }
                     2 -> {
                         tag = "iOS"
-
+                        state = "ios"
                     }
                     3 -> {
                         tag = "프론트엔드"
-
+                        state = "frontend"
                     }
                     4 -> {
                         tag = "백엔드"
-
+                        state = "backend"
                     }
                     5 -> {
                         tag = "인공지능"
-
+                        state = "ai"
                     }
                     6 -> {
                         tag = "게임개발"
-
+                        state = "game"
                     }
                     7 -> {
                         tag = "IoT"
-
+                        state = "iot"
                     }
                     8 -> {
                         tag = "정보보안"
-
+                        state = "infosecurity"
                     }
                     9 -> {
                         tag = "로보틱스"
-
+                        state = "robotics"
                     }
                     else -> {
                         tag = "전체"
+                        state = "all"
                     }
                 }
+                getCategoryPost(state)
             }
         }
 
