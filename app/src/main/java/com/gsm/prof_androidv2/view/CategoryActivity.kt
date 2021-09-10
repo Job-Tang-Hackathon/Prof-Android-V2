@@ -6,7 +6,9 @@ import android.os.Bundle
 import android.view.View
 import com.gsm.prof_androidv2.R
 import com.gsm.prof_androidv2.databinding.ActivityCategoryBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class CategoryActivity : AppCompatActivity() {
     private val binding by lazy { ActivityCategoryBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {

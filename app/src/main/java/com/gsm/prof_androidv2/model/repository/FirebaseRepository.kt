@@ -8,5 +8,5 @@ import javax.inject.Inject
 class FirebaseRepository @Inject constructor(
     private val dataSource: FirebaseDataSource
 ) {
-   // fun signUp(email: String, password: String) : Unit = dataSource.signUp(email, password)
+    fun getCategoryPost(category : String) = dataSource.getCategoryPost(category)
 }
