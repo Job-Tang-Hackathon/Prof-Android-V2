@@ -14,4 +14,6 @@ class FirebaseDataSource @Inject constructor(
     private val firebaseStore : FirebaseFirestore
 ){
     fun getCategoryPost(category : String) =  firebaseStore.collection(category).get()
+
+    fun getMyPost(category: String, uid : String) = firebaseStore.collection(category).document(uid).get()
 }

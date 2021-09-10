@@ -10,7 +10,7 @@ android {
     compileSdk 30
 
     defaultConfig {
-        applicationId "com.study.prof_androidv2"
+        applicationId "com.gsm.prof_androidv2"
         minSdk 21
         targetSdk 30
         versionCode 1

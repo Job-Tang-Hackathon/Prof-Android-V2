@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.QuerySnapshot
 import com.gsm.prof_androidv2.model.repository.FirebaseRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,21 +14,45 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val repository: FirebaseRepository
 ): ViewModel() {
+    //선택한 카테고리의 모든 게시물 저장
     val getPostResponse : LiveData<Task<QuerySnapshot>> get() = _getPostResponse
     private val _getPostResponse: MutableLiveData<Task<QuerySnapshot>> = MutableLiveData<Task<QuerySnapshot>>()
 
-    val getPostNull : LiveData<Boolean> get() = _getPostNull
-    private val _getPostNull: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
+    //선택한 카테고리의 내 게시물 저장
+    val getMyPostResponse : LiveData<Task<DocumentSnapshot>> get() = _getMyPostResponse
+    private val _getMyPostResponse: MutableLiveData<Task<DocumentSnapshot>> = MutableLiveData<Task<DocumentSnapshot>>()
 
+    val getAllPostNull : LiveData<Boolean> get() = _getAllPostNull
+    private val _getAllPostNull: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
+
+    val getMyPostNull : LiveData<Boolean> get() = _getMyPostNull
+    private val _getMyPostNull: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
+
+    //선택한 카테고리의 모든 게시물 가져오기
     fun getCategoryPost(state:String) = repository.getCategoryPost(state)
 
-    //가져온 게시물
+    //선택한 카테고리의 내 게시물 가져오기
+    fun getMyPost(state: String, uid: String) = repository.getMyPost(state,uid)
+
+    //선택한 카테고리의 가져온 모든 게시물 저장
     fun setGetPostResponse(response: Task<QuerySnapshot>){
         _getPostResponse.value = response
     }
 
+    //선택한 카테고리의 내 게시물 저장
+    fun setGetMyPostResponse(response: Task<DocumentSnapshot>){
+        _getMyPostResponse.value = response
+    }
+
+
+
     //게시물이 없는지 체크 true = 게시물 없음, false = 게시물 있음
-    fun setGetPostNull(check : Boolean){
-        _getPostNull.value = check
+    fun setGetAllPostNull(check : Boolean){
+        _getAllPostNull.value = check
+    }
+
+    //게시물이 없는지 체크 true = 게시물 없음, false = 게시물 있음
+    fun setGetMyPostNull(check : Boolean){
+        _getMyPostNull.value = check
     }
 }
