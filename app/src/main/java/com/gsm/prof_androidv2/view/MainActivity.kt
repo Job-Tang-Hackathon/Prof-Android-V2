@@ -32,9 +32,6 @@ class MainActivity : AppCompatActivity() {
         intent.getStringExtra("state")?.let { getMyPost(it, userUid!!) }
         val allPostFragment = AllPostFragment()
 
-        // TODO: 2021-09-10 필요없는 코드인지 확인하고 지우기
-        val bundle = bundleOf("state" to intent.getStringExtra("state"))
-        allPostFragment.arguments = bundle
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
