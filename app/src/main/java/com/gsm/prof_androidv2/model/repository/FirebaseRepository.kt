@@ -9,4 +9,6 @@ class FirebaseRepository @Inject constructor(
     private val dataSource: FirebaseDataSource
 ) {
     fun getCategoryPost(category : String) = dataSource.getCategoryPost(category)
+
+    fun getMyPost(category: String, uid: String) = dataSource.getMyPost(category, uid)
 }

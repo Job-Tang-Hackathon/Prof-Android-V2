@@ -11,9 +11,9 @@ import androidx.activity.viewModels
 import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.firebase.auth.FirebaseAuth
 import com.gsm.prof_androidv2.R
 import com.gsm.prof_androidv2.databinding.ActivityMainBinding
-import com.gsm.prof_androidv2.utils.showVertical
 import com.gsm.prof_androidv2.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -23,16 +23,15 @@ class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private var tag = ""
     private val mainViewModel by viewModels<MainViewModel>()
-
+    private val userUid : String? = FirebaseAuth.getInstance().uid
 
     override fun onStart() {
         super.onStart()
         Log.d("로그","인텐트에서 받아온 정보 : ${intent.getStringExtra("state")}")
         intent.getStringExtra("state")?.let { getCategoryPost(it) }
-        //getCategoryPost("XlvjmPpeAQX6QzlUDMsqVrx4YHD3")
+        intent.getStringExtra("state")?.let { getMyPost(it, userUid!!) }
         val allPostFragment = AllPostFragment()
-        val bundle = bundleOf("state" to intent.getStringExtra("state"))
-        allPostFragment.arguments = bundle
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,21 +82,38 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    //Post 가져오기
+    //선택한 카테고리의 모든 게시물 가져오기
     private fun getCategoryPost(state:String){
         mainViewModel.getCategoryPost(state)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     if (task != null){
-                        Log.d("로그","if  task != null")
 
                         mainViewModel.setGetPostResponse(task)
                         if (task.result.documents.toString() == "[]") {
-                            mainViewModel.setGetPostNull(true)
+                            mainViewModel.setGetAllPostNull(true)
                         }
                     }else{
                         Log.d("로그","else  task != null")
                     }
+                }else{
+                    Log.d("로그","isSuccessful")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("로그","addOnFailureListener : $exception")
+                Toast.makeText(this,"서버에 오류가 발생했습니다",Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    //선택한 카테고리의 내 게시물 가져오기
+    private fun getMyPost(state:String, uid : String){
+        mainViewModel.getMyPost(state, uid)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("로그","getMyPost : ${task.result.data}")
+                    mainViewModel.setGetMyPostResponse(task)
+
                 }else{
                     Log.d("로그","isSuccessful")
                 }
@@ -177,6 +193,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 getCategoryPost(state)
+                getMyPost(state, userUid!!)
             }
         }
 

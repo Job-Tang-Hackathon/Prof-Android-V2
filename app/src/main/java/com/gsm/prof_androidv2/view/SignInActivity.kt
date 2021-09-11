@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.gsm.prof_androidv2.R
 import com.gsm.prof_androidv2.databinding.ActivitySignInBinding
+import com.gsm.prof_androidv2.utils.Utils.default_web_client_id
 import com.gsm.prof_androidv2.viewmodel.SignInViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -43,10 +44,6 @@ class SignInActivity : AppCompatActivity() {
         startActivityForResult(signInIntent, GOOGLE_REQUEST_CODE)
     }
 
-    fun createAccountBtnClick(view: View){
-
-    }
-
     fun loginBtnClick(view: View){
         Log.d(TAG,"email : ${binding.email.text.toString()}, password : ${binding.password.text.toString()}")
         signInViewModel.signIn(binding.email.text.toString(),binding.password.text.toString())
@@ -54,7 +51,7 @@ class SignInActivity : AppCompatActivity() {
 
     private fun initGoogleLogin(){
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestIdToken(default_web_client_id)
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(this,gso)
@@ -64,7 +61,10 @@ class SignInActivity : AppCompatActivity() {
         signInViewModel.signInResponse.observe(this, Observer {
             when(it){
                 0 -> Toast.makeText(this,"이메일 또는 비밀번호가 틀렸습니다",Toast.LENGTH_SHORT).show()
-                1 -> Toast.makeText(this,"로그인에 성공하였습니다",Toast.LENGTH_SHORT).show()
+                1 -> {
+                    Toast.makeText(this,"로그인에 성공하였습니다",Toast.LENGTH_SHORT).show()
+                    loginSuccess()
+                }
             }
         })
     }
@@ -96,6 +96,8 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun loginSuccess() {
-
+        val intent = Intent(this, CategoryActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
