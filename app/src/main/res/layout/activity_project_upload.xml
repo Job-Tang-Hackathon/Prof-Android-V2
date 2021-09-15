@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="activity"
             type="com.gsm.prof_androidv2.view.upload.ProjectUploadActivity" />
+
+        <variable
+            name="viewmodel"
+            type="com.gsm.prof_androidv2.viewmodel.UploadViewModel" />
     </data>
 
     <RelativeLayout
@@ -90,29 +95,52 @@
                             android:background="@drawable/select_picture_btn"
                             android:onClick="@{()->activity.goAlbum()}">
 
-                            <LinearLayout
+                            <RelativeLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_centerInParent="true"
-
                                 android:orientation="vertical">
 
+
                                 <ImageView
+                                    android:id="@+id/camera_draw"
                                     android:layout_width="35dp"
                                     android:layout_height="35dp"
+                                    android:layout_centerHorizontal="true"
                                     android:src="@drawable/camera" />
 
-                                <TextView
-                                    android:id="@+id/photo_index"
+                                <FrameLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/notosanskrbold"
-                                    android:gravity="center"
-                                    android:includeFontPadding="false"
-                                    android:text="0/5"
-                                    android:textColor="@color/view_line"
-                                    android:textSize="15sp" />
-                            </LinearLayout>
+                                    android:layout_below="@+id/camera_draw">
+
+                                    <TextView
+                                        android:id="@+id/photo_index"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:layout_gravity="center"
+                                        android:layout_marginLeft="25dp"
+                                        android:fontFamily="@font/notosanskrbold"
+                                        android:includeFontPadding="false"
+                                        android:text="@{viewmodel.photocnt.toString()}"
+                                        android:textColor="@color/view_line"
+                                        android:textSize="15sp" />
+
+
+                                    <TextView
+                                        android:id="@+id/photo_index_max"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_below="@+id/camera_draw"
+                                        android:layout_marginLeft="8dp"
+                                        android:fontFamily="@font/notosanskrbold"
+                                        android:gravity="center"
+                                        android:includeFontPadding="false"
+                                        android:text="/5"
+                                        android:textColor="@color/view_line"
+                                        android:textSize="15sp" />
+                                </FrameLayout>
+                            </RelativeLayout>
 
                         </RelativeLayout>
 
@@ -319,8 +347,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
                     android:layout_marginBottom="100dp"
+                    android:orientation="vertical"
                     android:padding="20dp">
 
                     <TextView
