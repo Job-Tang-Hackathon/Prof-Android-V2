@@ -45,8 +45,15 @@ class SignInActivity : AppCompatActivity() {
     }
 
     fun loginBtnClick(view: View){
+        binding.progressBar.visibility = View.VISIBLE
         Log.d(TAG,"email : ${binding.email.text.toString()}, password : ${binding.password.text.toString()}")
         signInViewModel.signIn(binding.email.text.toString(),binding.password.text.toString())
+    }
+
+    fun signUpBtnClick(view: View){
+        binding.progressBar.visibility = View.GONE
+        val intent = Intent(this, SignUpActivity::class.java)
+        startActivity(intent)
     }
 
     private fun initGoogleLogin(){
@@ -60,8 +67,12 @@ class SignInActivity : AppCompatActivity() {
     private fun observeViewModel(){
         signInViewModel.signInResponse.observe(this, Observer {
             when(it){
-                0 -> Toast.makeText(this,"이메일 또는 비밀번호가 틀렸습니다",Toast.LENGTH_SHORT).show()
+                0 -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this, "이메일 또는 비밀번호가 틀렸습니다", Toast.LENGTH_SHORT).show()
+                }
                 1 -> {
+                    binding.progressBar.visibility = View.GONE
                     Toast.makeText(this,"로그인에 성공하였습니다",Toast.LENGTH_SHORT).show()
                     loginSuccess()
                 }
@@ -96,6 +107,7 @@ class SignInActivity : AppCompatActivity() {
     }
 
     private fun loginSuccess() {
+        binding.progressBar.visibility = View.VISIBLE
         val intent = Intent(this, CategoryActivity::class.java)
         startActivity(intent)
         finish()
