@@ -14,7 +14,6 @@
         android:layout_height="match_parent"
         tools:context=".view.SignUpActivity">
 
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -25,6 +24,8 @@
 
 
                 <ImageView
+                    android:id="@+id/back"
+                    android:onClick="@{activity::backBtnClick}"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentStart="true"
@@ -97,6 +98,7 @@
                             android:background="@drawable/login_edittext"
                             android:fontFamily="@font/notosanskrmedium"
                             android:hint="6자 이상 입력해 주세요"
+                            android:inputType="textPassword"
                             android:includeFontPadding="false"
                             android:padding="15dp" />
 
@@ -118,6 +120,7 @@
                             android:background="@drawable/login_edittext"
                             android:fontFamily="@font/notosanskrmedium"
                             android:hint="비밀번호 재확인을 주세요"
+                            android:inputType="textPassword"
                             android:includeFontPadding="false"
                             android:padding="15dp" />
                     </LinearLayout>
@@ -152,7 +155,7 @@
             android:layout_height="50dp"
             android:layout_centerInParent="true"
             android:indeterminateTint="@color/main_color"
-            android:visibility="gone"
+            android:visibility="invisible"
             />
 
     </RelativeLayout>
