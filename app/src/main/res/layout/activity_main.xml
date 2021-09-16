@@ -28,6 +28,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:id="@+id/search_layout"
                     android:layout_marginTop="20dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/search_frame"
@@ -60,6 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:id="@+id/spinner_layout"
                     android:layout_marginEnd="20dp"
                     android:layout_marginStart="20dp">
 
@@ -79,37 +81,25 @@
 
                     <Spinner
                         android:id="@+id/spinner"
-                        android:elevation="5dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true" />
+                        android:layout_centerVertical="true"
+                        android:elevation="5dp" />
                 </RelativeLayout>
 
-                <RelativeLayout
+                <fragment
+                    android:id="@+id/fragment"
+                    android:name="androidx.navigation.fragment.NavHostFragment"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tab_layout"
-                        android:layout_width="match_parent"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_height="wrap_content"
-
-                        app:tabTextAppearance="@style/tab_text" />
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/view_pager_2"
-                        android:layout_width="match_parent"
-                        android:layout_centerHorizontal="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_height="match_parent"
-                        android:layout_below="@id/tab_layout"
-                        android:background="@color/white" />
-
-                </RelativeLayout>
-
+                    android:layout_height="match_parent"
+                    app:defaultNavHost="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:navGraph="@navigation/nav_graph" />
 
             </LinearLayout>
 

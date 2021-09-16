@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private var tag = ""
     private val mainViewModel by viewModels<MainViewModel>()
     private val userUid: String? = FirebaseAuth.getInstance().uid
@@ -41,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         setupSpinnerHandler()
         firstSpinner()
         observeViewModel()
-        initViewPagerTabLayout()
         binding.postCount.visibility = View.VISIBLE
 
         binding.activity = this
@@ -63,36 +62,20 @@ class MainActivity : AppCompatActivity() {
         binding.spinner.setSelection(state)
     }
 
-    private fun initViewPagerTabLayout() {
-        val adapter = ViewPagerAdapter(this)
-        binding.viewPager2.adapter = adapter
 
-        TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
-            when (position) {
-                0 -> {
-                    tab.text = "전체 게시물"
-                    binding.postCount.text = "총 ${mainViewModel.allPostCount.value}개의 항목"
-                }
-                1 -> {
-                    tab.text = "내 게시물"
-                    binding.postCount.text = "총 ${mainViewModel.myPostCount.value}개의 항목"
-                }
-            }
-        }.attach()
-    }
 
-    private fun observeViewModel() {
+    private fun observeViewModel(){
         mainViewModel.getPostResponse.observe(this, Observer {
 
         })
     }
 
     //선택한 카테고리의 모든 게시물 가져오기
-    private fun getCategoryPost(state: String) {
+    private fun getCategoryPost(state:String){
         mainViewModel.getCategoryPost(state)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    if (task != null) {
+                    if (task != null){
                         binding.postCount.text = "총 ${task.result.size()}개의 항목"
                         mainViewModel.setAllPostCount(task.result.size())
 
@@ -100,49 +83,46 @@ class MainActivity : AppCompatActivity() {
                         if (task.result.documents.toString() == "[]") {
                             mainViewModel.setGetAllPostNull(true)
                         }
-                    } else {
-                        Log.d("로그", "else  task != null")
+                    }else{
+                        Log.d("로그","else  task != null")
                     }
-                } else {
-                    Log.d("로그", "isSuccessful")
+                }else{
+                    Log.d("로그","isSuccessful")
                 }
             }
             .addOnFailureListener { exception ->
-                Log.d("로그", "addOnFailureListener : $exception")
-                Toast.makeText(this, "서버에 오류가 발생했습니다", Toast.LENGTH_SHORT).show()
+                Log.d("로그","addOnFailureListener : $exception")
+                Toast.makeText(this,"서버에 오류가 발생했습니다",Toast.LENGTH_SHORT).show()
             }
     }
 
     //선택한 카테고리의 내 게시물 가져오기
-    private fun getMyPost(state: String, uid: String) {
-        Log.d("로그", "내 게시물을 가져오라고 시킴 - state : $state, uid : $uid")
+    private fun getMyPost(state:String, uid : String){
+        Log.d("로그","내 게시물을 가져오라고 시킴 - state : $state, uid : $uid")
         mainViewModel.getMyPost(state, uid)
-            /*    .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.d("로그","getMyPost : ${task.result.size()}, ${task.result.isEmpty}, ${task.result.}")
-                        mainViewModel.setGetMyPostResponse(task)
-                        binding.postCount.text = "총 ${task.result.size()}개의 항목"
-                        mainViewModel.setAllPostCount(task.result.size())
-                    }else{
-                        Log.d("로그","isSuccessful")
-                    }
-                }*/
+        /*    .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("로그","getMyPost : ${task.result.size()}, ${task.result.isEmpty}, ${task.result.}")
+                    mainViewModel.setGetMyPostResponse(task)
+                    binding.postCount.text = "총 ${task.result.size()}개의 항목"
+                    mainViewModel.setAllPostCount(task.result.size())
+                }else{
+                    Log.d("로그","isSuccessful")
+                }
+            }*/
             .addOnSuccessListener {
                 var id = ""
                 for (document in it) {
                     Log.i("로그", "${document.id} => ${document.data}")
                     id = document.id
                 }
-                Log.d(
-                    "로그",
-                    "getMyPostOnSuccess - $it, ${it.size()}, ${it.metadata}, ${it.isEmpty}, $id"
-                )
-                if (id == "[]") {
+                Log.d("로그","getMyPostOnSuccess - $it, ${it.size()}, ${it.metadata}, ${it.isEmpty}, $id")
+                if (id=="[]"){
                     mainViewModel.setGetAllPostNull(true)
-                    Log.d("로그", "여기 1")
-                } else {
+                    Log.d("로그","여기 1")
+                }else{
                     mainViewModel.setGetMyPostResponse(it)
-                    Log.d("로그", "여기 2")
+                    Log.d("로그","여기 2")
                 }
             }
             .addOnFailureListener { exception ->
@@ -189,8 +169,8 @@ class MainActivity : AppCompatActivity() {
                 }*/
             }
             .addOnFailureListener { exception ->
-                Log.d("로그", "addOnFailureListener : $exception")
-                Toast.makeText(this, "서버에 오류가 발생했습니다", Toast.LENGTH_SHORT).show()
+                Log.d("로그","addOnFailureListener : $exception")
+                Toast.makeText(this,"서버에 오류가 발생했습니다",Toast.LENGTH_SHORT).show()
             }
 
         //내 게시물중 검색
@@ -212,6 +192,7 @@ class MainActivity : AppCompatActivity() {
                 }
         }
     }
+
 
     private fun setupSpinnerTag() {
         binding.spinner.adapter = ArrayAdapter.createFromResource(
