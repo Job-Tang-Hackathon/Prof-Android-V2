@@ -24,6 +24,8 @@
             android:name=".view.upload.ProjectUploadActivity"
             android:exported="true">
         </activity>
+
+        <activity android:name=".view.SignUpActivity"/>
         <activity android:name=".view.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
