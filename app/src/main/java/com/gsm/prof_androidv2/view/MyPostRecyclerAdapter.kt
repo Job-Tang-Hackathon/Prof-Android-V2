@@ -4,11 +4,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.gsm.prof_androidv2.R
 import com.gsm.prof_androidv2.databinding.ProjectRecyclerViewItemBinding
 import com.gsm.prof_androidv2.model.dto.GetCategoryPostDto
+import com.gsm.prof_androidv2.view.viewpager.ViewPagerFragmentDirections
 import com.gsm.prof_androidv2.viewmodel.MainViewModel
 import kotlin.properties.Delegates
 
@@ -63,6 +65,13 @@ class MyPostRecyclerAdapter (
 
     override fun onBindViewHolder(holder: MyPostRecyclerViewHolder, position: Int) {
         (holder as? MyPostRecyclerViewHolder)?.bind(response[position])
+
+        holder.itemView.setOnClickListener {
+            val action = ViewPagerFragmentDirections.actionViewPagerFragmentToFragmentAllDetail(
+                response[position]
+            )
+            it.findNavController().navigate(action)
+        }
 
     }
 
