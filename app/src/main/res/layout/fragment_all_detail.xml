@@ -18,6 +18,8 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="29dp"
+            android:layout_marginTop="131dp"
             android:fontFamily="@font/notosanskrbold"
             android:includeFontPadding="false"
             android:text="@{data.title}"
@@ -43,30 +45,51 @@
 
         <TextView
             android:id="@+id/textView2"
+            peopleText="@{data.people}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{data.people}"
+            android:layout_marginTop="32dp"
+            android:drawablePadding="4dp"
+            android:gravity="center"
             android:textColor="@color/black"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:drawableStartCompat="@drawable/audience"
+            app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView"
             tool:text="참여한 사람들 : " />
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{data.fullExplanation}"
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="24dp"
+            android:background="#999999"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            tool:text="장황한 설명장황한 설명장황한 설명장황한 설명장황한 설명장황한 설명장황한 설명장황한 설명장황한 설명장황한 설명장황한 설명장황한 설명장황한 설명장황한 설명장황한 설명장황한 설명장황한 설명장황한 설명장황한 설명" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="375dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/notosanskrbold"
+            android:text="@{data.fullExplanation}"
+            android:textColor="#515151"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/view"
+            tool:text="장황한 설명장황한 설명장황한장황한 설명장황한 설명장황한 장황한 설명장황한 설명장황한 장황한 설명장황한 설명장황한 장황한 설명장황한 설명장황한  " />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="@{data.tag}"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="#2ED666"
+            app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
             tool:text="태그" />
 
