@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gsm.prof_androidv2.R
 import com.gsm.prof_androidv2.databinding.UploadItemBinding
-import com.gsm.prof_androidv2.generated.callback.OnClickListener
 import com.gsm.prof_androidv2.view.upload.ProjectUploadActivity.Companion.photoIndex
 import com.gsm.prof_androidv2.viewmodel.ActionType
 import com.gsm.prof_androidv2.viewmodel.UploadViewModel
