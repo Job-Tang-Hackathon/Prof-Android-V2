@@ -36,36 +36,6 @@
                     android:textColor="@color/black"
                     android:textSize="26sp" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/search_frame"
-                    android:elevation="8dp">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:background="@null"
-                        android:fontFamily="@font/notosanskrmedium"
-                        android:hint="프로젝트 이름을 검색해 보세요!"
-                        android:includeFontPadding="false"
-                        android:padding="12dp"
-                        android:textSize="15sp" />
-
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:src="@drawable/search" />
-                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
