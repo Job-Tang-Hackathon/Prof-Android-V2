@@ -43,6 +43,8 @@ class MainActivity : AppCompatActivity() {
         observeViewModel()
         initViewPagerTabLayout()
         binding.postCount.visibility = View.VISIBLE
+
+        binding.activity = this
     }
 
     private fun firstSpinner(){
@@ -147,11 +149,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     //검색한 게시물 가져오기
-    fun getSearchedPost(keyword: String) {
+    fun getSearchedPost() {
+        var keyword = binding.searchBar.text.toString()
+
+        if (keyword.isEmpty()){
+            Toast.makeText(this, "검색어를 입력해주세요", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         mainViewModel.getSearchedPost(keyword)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d("로그","getMyPost : ${task.result}")
+                    Log.d("로그","getSearchedPost : ${task.result}")
                     mainViewModel.setGetSearchedPostResponse(task)
 
                 }

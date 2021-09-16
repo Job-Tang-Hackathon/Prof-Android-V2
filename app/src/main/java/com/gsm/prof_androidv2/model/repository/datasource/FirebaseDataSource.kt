@@ -7,7 +7,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.storage.FirebaseStorage
-import com.gsm.prof_androidv2.model.dto.GetCategoryPostDto
 import javax.inject.Inject
 
 class FirebaseDataSource @Inject constructor(

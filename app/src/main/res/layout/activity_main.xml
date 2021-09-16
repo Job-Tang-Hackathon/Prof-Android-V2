@@ -37,11 +37,11 @@
                         android:id="@+id/search_bar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
                         android:background="@null"
                         android:fontFamily="@font/notosanskrmedium"
                         android:hint="프로젝트 이름을 검색해 보세요!"
                         android:includeFontPadding="false"
+                        android:singleLine="true"
                         android:padding="12dp"
                         android:textSize="15sp" />
 
@@ -51,11 +51,9 @@
                         android:layout_height="20dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:layout_marginBottom="10dp"
+                        android:layout_margin="10dp"
                         android:onClick="@{() -> activity.getSearchedPost()}"
-                        android:src="@drawable/main_search" />
+                        android:src="@drawable/main_search"/>
                 </RelativeLayout>
 
                 <RelativeLayout
