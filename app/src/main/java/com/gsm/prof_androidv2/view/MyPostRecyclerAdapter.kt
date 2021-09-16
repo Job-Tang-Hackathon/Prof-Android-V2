@@ -27,11 +27,13 @@ class MyPostRecyclerAdapter (
         if (snapshots != null) {
             for (document in snapshots) {
                 Log.i("로그", "어뎁터 안 : ${document.id} => ${document.data}")
+                item = document.toObject(GetCategoryPostDto::class.java)
+                response.add(item!!)
             }
         }
         Log.d("로그","어뎁터 안의 mypost 값 : $")
-        count = viewModel.getMyPostResponse.value!!.size()-1
-        if (snapshots != null) {
+        count = viewModel.getMyPostResponse.value!!.size()
+/*        if (snapshots != null) {
             for (snapshot in snapshots) {
                 if (snapshot.id == uid){
                     item = snapshot.toObject(GetCategoryPostDto::class.java)
@@ -41,7 +43,7 @@ class MyPostRecyclerAdapter (
                 }
 
             }
-        }
+        }*/
     }
 
     override fun onCreateViewHolder(
