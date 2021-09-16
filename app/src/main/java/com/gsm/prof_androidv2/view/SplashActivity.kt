@@ -45,7 +45,7 @@ class SplashActivity : AppCompatActivity() {
         uid = FirebaseAuth.getInstance().uid.toString()
         Log.d("로그","uid : $uid")
         if(uid != "null"){
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this,CategoryActivity::class.java)
             startActivity(intent)
             finish()
         }else{
