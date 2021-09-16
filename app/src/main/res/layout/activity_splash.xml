@@ -6,54 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".view.SplashActivity">
 
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/splash_background"
-        />
+        android:src="@drawable/splash_background" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="50dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="50dp"
-        android:layout_marginStart="30dp"
-        >
+        app:layout_constraintStart_toStartOf="parent">
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/gugiregular"
+            android:includeFontPadding="false"
             android:text="우리학교"
             android:textColor="@color/white"
-            android:fontFamily="@font/gugiregular"
-            android:includeFontPadding="false"
-            android:textSize="30sp"
-            android:layout_marginBottom="3dp"
-            />
+            android:textSize="30sp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:fontFamily="@font/gugiregular"
+            android:includeFontPadding="false"
             android:text="학생들의"
             android:textColor="@color/white"
-            android:fontFamily="@font/gugiregular"
-            android:includeFontPadding="false"
             android:textSize="30sp"
-            android:layout_marginBottom="3dp"
 
             />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="프로젝트가 궁금하다면?"
-            android:textColor="@color/white"
+            android:layout_marginBottom="3dp"
             android:fontFamily="@font/gugiregular"
             android:includeFontPadding="false"
+            android:text="프로젝트가 궁금하다면?"
+            android:textColor="@color/white"
             android:textSize="30sp"
-            android:layout_marginBottom="3dp"
 
             />
 
