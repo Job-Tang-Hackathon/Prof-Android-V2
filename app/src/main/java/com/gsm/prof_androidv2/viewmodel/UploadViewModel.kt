@@ -108,7 +108,9 @@ class UploadViewModel @Inject constructor(
         oneLine: String,
         fullLine: String,
         link: String,
-        state: String, ) {
+        state: String,
+        category:String,
+    ) {
         _visibleBtn.value = false
         if (_imgs.value != null && title != "" && tag != "" && people != "" && oneLine != "" && fullLine != "" && state != "") {
             val filename = formatter.format(Date()).toString() + ".png"
@@ -132,7 +134,7 @@ class UploadViewModel @Inject constructor(
                             uid
                         )
                         database.collection("all").add(dataInput)
-                        database.collection("android").add(dataInput)
+                        database.collection("${category}").add(dataInput)
                         _loadingText.value = "업로드 성공!"
                         _loadingToast.value = Event(true)
                         _visible.value = false

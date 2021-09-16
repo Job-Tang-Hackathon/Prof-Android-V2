@@ -45,6 +45,8 @@ class ProjectUploadActivity : AppCompatActivity() {
 
     private val auth = FirebaseAuth.getInstance()
     val uid = auth.currentUser?.uid
+    var state = "android"
+
 
 
     companion object {
@@ -79,7 +81,6 @@ class ProjectUploadActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                var state = "android"
                 when (position) {
                     0 -> {
                         tag = "안드로이드"
@@ -219,7 +220,9 @@ class ProjectUploadActivity : AppCompatActivity() {
                         people = binding.postPeople.text.toString(),
                         tag = binding.postTag.text.toString(),
                         link = binding.postGithub.text.toString(),
-                        state = binding.postState.text.toString(),)
+                        state = binding.postState.text.toString(),
+                        category = state
+                    )
                 }
                 Log.d(TAG, "imgUpLoadActivity: $it")
             })
@@ -233,9 +236,7 @@ class ProjectUploadActivity : AppCompatActivity() {
             }
         })
 
-
     }
-
 
 
     fun backBtn() {

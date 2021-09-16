@@ -26,7 +26,6 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed(
             {
                 checkUserUid()
-
             },
             1500
         )
