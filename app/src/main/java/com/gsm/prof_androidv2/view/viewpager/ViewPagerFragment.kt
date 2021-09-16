@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.gsm.prof_androidv2.R
 import com.gsm.prof_androidv2.databinding.FragmentViewpagerBinding
+import com.gsm.prof_androidv2.view.MainActivity
 
 class ViewPagerFragment : Fragment() {
 
@@ -17,8 +18,19 @@ class ViewPagerFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_viewpager,container,false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_viewpager, container, false)
+
+
+
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).binding.apply {
+            this.searchLayout.visibility= View.VISIBLE
+            this.spinnerLayout.visibility= View.VISIBLE
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,7 +38,7 @@ class ViewPagerFragment : Fragment() {
         initViewPagerTabLayout()
     }
 
-    private fun initViewPagerTabLayout(){
+    private fun initViewPagerTabLayout() {
         val adapter = ViewPagerAdapter(requireActivity())
         binding.viewPager2.adapter = adapter
 
@@ -41,7 +53,6 @@ class ViewPagerFragment : Fragment() {
             }
         }.attach()
     }
-
 
 
 }
