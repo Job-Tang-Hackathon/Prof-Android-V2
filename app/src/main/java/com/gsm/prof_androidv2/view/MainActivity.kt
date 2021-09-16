@@ -8,9 +8,6 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.core.os.bundleOf
-import androidx.lifecycle.Observer
-import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.gsm.prof_androidv2.R
 import com.gsm.prof_androidv2.databinding.ActivityMainBinding
