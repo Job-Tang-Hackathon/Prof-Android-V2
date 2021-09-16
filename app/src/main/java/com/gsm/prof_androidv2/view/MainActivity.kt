@@ -23,11 +23,11 @@ class MainActivity : AppCompatActivity() {
     val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private var tag = ""
     private val mainViewModel by viewModels<MainViewModel>()
-    private val userUid : String? = FirebaseAuth.getInstance().uid
+    private val userUid: String? = FirebaseAuth.getInstance().uid
 
     override fun onStart() {
         super.onStart()
-        Log.d("로그","인텐트에서 받아온 정보 : ${intent.getStringExtra("state")}")
+        Log.d("로그", "인텐트에서 받아온 정보 : ${intent.getStringExtra("state")}")
         intent.getStringExtra("state")?.let { getCategoryPost(it) }
         intent.getStringExtra("state")?.let { getMyPost(it, userUid!!) }
         val allPostFragment = AllPostFragment()
@@ -42,10 +42,12 @@ class MainActivity : AppCompatActivity() {
         firstSpinner()
         observeViewModel()
         binding.postCount.visibility = View.VISIBLE
+
+        binding.activity = this
     }
 
-    private fun firstSpinner(){
-        val state : Int = when(intent.getStringExtra("state")){
+    private fun firstSpinner() {
+        val state: Int = when (intent.getStringExtra("state")) {
             "android" -> 1
             "ios" -> 2
             "frontend" -> 3
@@ -98,16 +100,16 @@ class MainActivity : AppCompatActivity() {
     private fun getMyPost(state:String, uid : String){
         Log.d("로그","내 게시물을 가져오라고 시킴 - state : $state, uid : $uid")
         mainViewModel.getMyPost(state, uid)
-            /*    .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        Log.d("로그","getMyPost : ${task.result.size()}, ${task.result.isEmpty}, ${task.result.}")
-                        mainViewModel.setGetMyPostResponse(task)
-                        binding.postCount.text = "총 ${task.result.size()}개의 항목"
-                        mainViewModel.setAllPostCount(task.result.size())
-                    }else{
-                        Log.d("로그","isSuccessful")
-                    }
-                }*/
+        /*    .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("로그","getMyPost : ${task.result.size()}, ${task.result.isEmpty}, ${task.result.}")
+                    mainViewModel.setGetMyPostResponse(task)
+                    binding.postCount.text = "총 ${task.result.size()}개의 항목"
+                    mainViewModel.setAllPostCount(task.result.size())
+                }else{
+                    Log.d("로그","isSuccessful")
+                }
+            }*/
             .addOnSuccessListener {
                 var id = ""
                 for (document in it) {
@@ -124,9 +126,71 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             .addOnFailureListener { exception ->
+                Log.d("로그", "addOnFailureListener : $exception")
+                Toast.makeText(this, "서버에 오류가 발생했습니다", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    //검색한 게시물 가져오기
+    fun getSearchedPost() {
+        var keyword = binding.searchBar.text.toString()
+
+        if (keyword.isEmpty()) {
+            Toast.makeText(this, "검색어를 입력해주세요", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        //전체 게시물 검색
+        mainViewModel.getSearchedPost(keyword)
+            .addOnCompleteListener { task ->
+                Log.d("로그","무야호 3 : ${task.result}, $task")
+                if (task.isSuccessful) {
+                    Log.d("로그","무야호 2 : ${task.result}, $task")
+                    var response = ""
+                    for (document in task.result) {
+                        response = document.id
+                        Log.d("로그","무야호 : ${document.id}")
+                    }
+                    if (response == "[]" || response == "") {
+                        mainViewModel.setMessage("blank")
+                    } else mainViewModel.setGetPostResponse(task)
+                    for (document in task.result) {
+                        Log.i("로그", "search : ${document.id} => ${document.data}")
+                    }
+                }
+         /*       else{
+                    var response = ""
+                    Log.d("로그","무야호 1 : ${task.result}, $task")
+
+                    for (document in task.result) {
+                        response = document.id
+                        Log.d("로그","무야호 : ${document.id}")
+                    }
+                }*/
+            }
+            .addOnFailureListener { exception ->
                 Log.d("로그","addOnFailureListener : $exception")
                 Toast.makeText(this,"서버에 오류가 발생했습니다",Toast.LENGTH_SHORT).show()
             }
+
+        //내 게시물중 검색
+        if (userUid != null) {
+            mainViewModel.getSearchMyPost(keyword, userUid)
+                .addOnSuccessListener {
+                    var response = ""
+                    for (document in it) {
+                        response = document.id
+                        Log.d("로그","무야호 My : ${document.id}")
+                    }
+                    if (response == "[]" || response == "") {
+                       // mainViewModel.setMessage("blank")
+                    } else mainViewModel.setGetMyPostResponse(it)
+                }
+                .addOnFailureListener { exception ->
+                    Log.d("로그", "addOnFailureListener : $exception")
+                    Toast.makeText(this, "서버에 오류가 발생했습니다", Toast.LENGTH_SHORT).show()
+                }
+        }
     }
 
 
@@ -199,6 +263,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 getCategoryPost(state)
                 getMyPost(state, userUid!!)
+                binding.searchBar.setText("")
             }
         }
 

@@ -22,11 +22,18 @@ class MainViewModel @Inject constructor(
     val getMyPostResponse : LiveData<QuerySnapshot> get() = _getMyPostResponse
     private val _getMyPostResponse = MutableLiveData<QuerySnapshot>()
 
+    //검색한 게시물 저장
+    val getSearchedPostResponse: LiveData<Task<QuerySnapshot>> get() = _getSearchedPostResponse
+    private val _getSearchedPostResponse: MutableLiveData<Task<QuerySnapshot>> = MutableLiveData<Task<QuerySnapshot>>()
+
     val getAllPostNull : LiveData<Boolean> get() = _getAllPostNull
     private val _getAllPostNull: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
     val getMyPostNull : LiveData<Boolean> get() = _getMyPostNull
     private val _getMyPostNull: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
+
+    val getSearchedPostNull : LiveData<Boolean> get() = _getSearchedPostNull
+    private val _getSearchedPostNull: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
     //전체 게시물 개수
     val allPostCount : LiveData<Int> get() = _allPostCount
@@ -36,11 +43,20 @@ class MainViewModel @Inject constructor(
     val myPostCount : LiveData<Int> get() = _myPostCount
     private val _myPostCount = MutableLiveData<Int>()
 
+    //오류 메시지 또는 메시지
+    val message : LiveData<String> get() = _message
+    private val _message = MutableLiveData<String>()
+
     //선택한 카테고리의 모든 게시물 가져오기
     fun getCategoryPost(state:String) = repository.getCategoryPost(state)
 
     //선택한 카테고리의 내 게시물 가져오기
     fun getMyPost(state: String, uid: String) = repository.getMyPost(state,uid)
+
+    //검색한 게시물 가져오기
+    fun getSearchedPost(keyword: String) = repository.getSearchedPost(keyword)
+
+    fun getSearchMyPost(keyword : String, uid : String) = repository.getSearchMyPost(keyword, uid)
 
     //선택한 카테고리의 가져온 모든 게시물 저장
     fun setGetPostResponse(response: Task<QuerySnapshot>){
@@ -52,6 +68,10 @@ class MainViewModel @Inject constructor(
         _getMyPostResponse.value = response
     }
 
+    //검색한 게시물 저장
+    fun setGetSearchedPostResponse(response: Task<QuerySnapshot>){
+        _getSearchedPostResponse.value = response
+    }
 
 
     //게시물이 없는지 체크 true = 게시물 없음, false = 게시물 있음
@@ -62,6 +82,15 @@ class MainViewModel @Inject constructor(
     //게시물이 없는지 체크 true = 게시물 없음, false = 게시물 있음
     fun setGetMyPostNull(check : Boolean){
         _getMyPostNull.value = check
+    }
+
+    //게시물이 없는지 체크 true = 게시물 없음, false = 게시물 있음
+    fun setGetSearchedPostNull(check : Boolean){
+        _getSearchedPostNull.value = check
+    }
+
+    fun setMessage(message : String){
+        _message.value = message
     }
 
     fun setAllPostCount(count : Int){
