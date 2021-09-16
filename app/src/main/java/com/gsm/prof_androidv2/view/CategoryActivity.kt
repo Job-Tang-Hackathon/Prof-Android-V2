@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.gsm.prof_androidv2.R
 import com.gsm.prof_androidv2.databinding.ActivityCategoryBinding
+import com.gsm.prof_androidv2.view.upload.ProjectUploadActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -59,5 +60,9 @@ class CategoryActivity : AppCompatActivity() {
         intent.putExtra("state",state)
         startActivity(intent)
         finish()
+    }
+    fun upLoad(view: View){
+        val intent = Intent(this, ProjectUploadActivity::class.java)
+        startActivity(intent)
     }
 }

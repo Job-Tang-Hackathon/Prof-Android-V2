@@ -17,6 +17,7 @@
         <activity android:name=".view.CategoryActivity">
 
         </activity>
+        <activity android:name=".view.upload.ProjectUploadActivity"/>
         <activity
             android:name=".view.SplashActivity"
             android:exported="true">

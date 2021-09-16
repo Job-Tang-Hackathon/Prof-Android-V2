@@ -11,9 +11,10 @@ data class UploadDto(
     val fullExplanation: String = "",
     val oneLineExplanation: String = "",
     val people: String ="",
-    var photo: List<Uri>,
+    var photo: ArrayList<String>,
     val state: String ="",
     val tag: String ="",
     val title: String ="",
-    val link: String =""
+    val link: String ="",
+    val uid : String = ""
 ):Parcelable

@@ -4,11 +4,11 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class GetCategoryPostDto(
+data class GetategoryPostDto(
     val fullExplanation: String = "",
     val oneLineExplanation: String = "",
     val people: String = "",
-    val photo: String = "",
+    val photo: ArrayList<String>,
     val state: String = "",
     val tag: String = "",
     val title: String = "",

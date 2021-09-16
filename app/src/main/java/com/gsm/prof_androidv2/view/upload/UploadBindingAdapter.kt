@@ -13,4 +13,5 @@ object UploadBindingAdapter {
             View.GONE
         }
     }
+
 }

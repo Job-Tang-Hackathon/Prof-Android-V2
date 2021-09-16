@@ -9,6 +9,9 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.view.View
+import android.widget.Adapter
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
@@ -34,6 +37,7 @@ import com.gsm.prof_androidv2.utils.Utils.storageURI
 @AndroidEntryPoint
 class ProjectUploadActivity : AppCompatActivity() {
     val TAG: String = "로그"
+    private var tag = ""
     lateinit var binding: ActivityProjectUploadBinding
 
     private val viewModel by viewModels<UploadViewModel>()
@@ -62,9 +66,70 @@ class ProjectUploadActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_project_upload)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_project_upload)
+        setSpinnerTag()
+        setupSpinnerHandler()
         initStartView()
     }
 
+    fun setupSpinnerHandler() {
+        binding.uploadSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                var state = "android"
+                when (position) {
+                    0 -> {
+                        tag = "안드로이드"
+                        state = "android"
+                    }
+                    1 -> {
+                        tag = "IOS"
+                        state = "ios"
+                    }
+                    2 -> {
+                        tag = "프론트엔드"
+                        state = "frontend"
+                    }
+                    3 -> {
+                        tag = "백엔드"
+                        state = "backend"
+                    }
+                    4 -> {
+                        tag = "AI"
+                        state = "ai"
+                    }
+                    5 -> {
+                        tag = "게임개발"
+                        state = "game"
+                    }
+                    6 -> {
+                        tag = "IOT"
+                        state = "iot"
+                    }
+                    7 -> {
+                        tag = "정보보안"
+                        state = "infosecurity"
+                    }
+                    8 -> {
+                        tag = "로봇틱스"
+                        state = "robotics"
+                    }
+                    else -> {
+                        tag = "기타"
+                        state = "etc"
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+    }
 
     fun initStartView() {
         binding.viewmodel = viewModel
@@ -80,7 +145,7 @@ class ProjectUploadActivity : AppCompatActivity() {
 
     fun uploadBtn() {
         imgUpLoad()
-        uploadText()
+        finish()
     }
 
     fun observerData() {
@@ -142,17 +207,23 @@ class ProjectUploadActivity : AppCompatActivity() {
     }
 
     fun imgUpLoad() {
-        viewModel.progress()
         val formatter = SimpleDateFormat("yyyyMMHH_mmss")
-        Log.d("로그","값 : ${viewModel.photocnt.value}")
-        for (i in 0 until photoIndex-1) {
+        Log.d("로그", "값 : ${viewModel.photocnt.value}")
+        for (i in 0 until photoIndex - 1) {
             viewModel.cnt.observe(this, Observer {
-                if (uid != null) {
-                    viewModel.imgUpLoad(formatter,uid)
+                if (uid != null && photoIndex != 0) {
+                    viewModel.progress()
+                    viewModel.imgUpLoad(formatter, uid,title = binding.postTitle.text.toString(),
+                        fullLine = binding.postFull.text.toString(),
+                        oneLine = binding.postContents.text.toString(),
+                        people = binding.postPeople.text.toString(),
+                        tag = binding.postTag.text.toString(),
+                        link = binding.postGithub.text.toString(),
+                        state = binding.postState.text.toString(),)
                 }
                 Log.d(TAG, "imgUpLoadActivity: $it")
             })
-      }
+        }
 
         viewModel.loadingToast.observe(this, Observer {
             it.getContentIfNotHandled()?.let {
@@ -165,27 +236,18 @@ class ProjectUploadActivity : AppCompatActivity() {
 
     }
 
-    fun uploadText(){
-        val formatter = SimpleDateFormat("yyyy-MM-dd")
 
-        if (uid != null) {
-            viewModel.dataPost(
-                formatter =formatter,
-                title = binding.postTitle.text.toString(),
-                fullLine = binding.postFull.text.toString(),
-                oneLine = binding.postContents.text.toString(),
-                people = binding.postPeople.text.toString(),
-                tag = binding.postTag.text.toString(),
-                link = binding.postGithub.text.toString(),
-                state = binding.postState.text.toString(),
-                uid = uid
-            )
-        }
 
+    fun backBtn() {
+        finish()
     }
 
-    fun backBtn(){
-        finish()
+    fun setSpinnerTag() {
+        binding.uploadSpinner.adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.UploadListItem,
+            R.layout.main_spinner_item
+        )
     }
 
 

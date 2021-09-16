@@ -1,5 +1,6 @@
 package com.gsm.prof_androidv2.view
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +12,7 @@ import androidx.activity.viewModels
 import com.google.firebase.auth.FirebaseAuth
 import com.gsm.prof_androidv2.R
 import com.gsm.prof_androidv2.databinding.ActivityMainBinding
+import com.gsm.prof_androidv2.view.upload.ProjectUploadActivity
 import com.gsm.prof_androidv2.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -215,4 +217,6 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
 }

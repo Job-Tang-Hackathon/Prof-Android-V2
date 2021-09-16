@@ -25,7 +25,12 @@
         <entry key="..\:/Users/s2000/AndroidStudioProjects/Prof-Android-V2/app/src/main/res/drawable-v24/ic_baseline_close_24.xml" value="0.2462962962962963" />
         <entry key="..\:/Users/s2000/AndroidStudioProjects/Prof-Android-V2/app/src/main/res/drawable-v24/project_upload_edittext.xml" value="0.2462962962962963" />
         <entry key="..\:/Users/s2000/AndroidStudioProjects/Prof-Android-V2/app/src/main/res/drawable-v24/select_picture_btn.xml" value="0.2462962962962963" />
+        <entry key="..\:/Users/s2000/AndroidStudioProjects/Prof-Android-V2/app/src/main/res/layout/activity_category.xml" value="0.13177083333333334" />
+        <entry key="..\:/Users/s2000/AndroidStudioProjects/Prof-Android-V2/app/src/main/res/layout/activity_main.xml" value="0.13177083333333334" />
         <entry key="..\:/Users/s2000/AndroidStudioProjects/Prof-Android-V2/app/src/main/res/layout/activity_project_upload.xml" value="0.25625" />
+        <entry key="..\:/Users/s2000/AndroidStudioProjects/Prof-Android-V2/app/src/main/res/layout/fragment_all_detail.xml" value="0.6" />
+        <entry key="..\:/Users/s2000/AndroidStudioProjects/Prof-Android-V2/app/src/main/res/layout/main_spinner_item.xml" value="0.16875" />
+        <entry key="..\:/Users/s2000/AndroidStudioProjects/Prof-Android-V2/app/src/main/res/layout/project_recycler_view_item.xml" value="0.13177083333333334" />
         <entry key="..\:/Users/s2000/AndroidStudioProjects/Prof-Android-V2/app/src/main/res/layout/upload_item.xml" value="0.25625" />
       </map>
     </option>

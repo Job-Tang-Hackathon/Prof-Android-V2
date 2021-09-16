@@ -46,6 +46,14 @@
                 android:text="프로젝트 작성"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/upload_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:elevation="5dp"
+                android:layout_centerVertical="true" />
         </RelativeLayout>
 
         <View
@@ -294,6 +302,7 @@
                             android:background="@null"
                             android:fontFamily="@font/notosanskrmedium"
                             android:gravity="top"
+                            visible="@{viewmodel.visibleBtn}"
                             android:hint="최대한 자세히 입력해 주세요"
                             android:includeFontPadding="false"
                             android:textSize="15sp" />
