@@ -63,7 +63,9 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="총 10개의 항목"
+                        android:text="총 ?개의 항목"
+                        android:id="@+id/post_count"
+                        android:visibility="invisible"
                         android:textSize="16sp"
                         android:layout_marginStart="10dp"
                         android:layout_centerVertical="true"

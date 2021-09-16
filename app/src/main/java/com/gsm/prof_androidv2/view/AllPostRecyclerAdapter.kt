@@ -4,32 +4,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.gsm.prof_androidv2.R
 import com.gsm.prof_androidv2.databinding.ProjectRecyclerViewItemBinding
 import com.gsm.prof_androidv2.model.dto.GetCategoryPostDto
 import com.gsm.prof_androidv2.model.repository.FirebaseRepository
-import com.gsm.prof_androidv2.view.viewpager.ViewPagerFragmentDirections
 import com.gsm.prof_androidv2.viewmodel.MainViewModel
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
 class MainRecyclerAdapter(
-    private val viewModel: MainViewModel
-) : RecyclerView.Adapter<MainRecyclerAdapter.MainRecyclerViewHolder>() {
-    var response: ArrayList<GetCategoryPostDto> = arrayListOf()
+    private val viewModel : MainViewModel
+) : RecyclerView.Adapter<MainRecyclerViewHolder>() {
+    var response : ArrayList<GetCategoryPostDto> = arrayListOf()
     var count by Delegates.notNull<Int>()
-
-    class MainRecyclerViewHolder(val binding: ProjectRecyclerViewItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(data: GetCategoryPostDto) {
-            binding.data = data
-            binding.executePendingBindings()
-
-
-        }
-    }
 
     init {
         response.clear()
@@ -57,12 +45,6 @@ class MainRecyclerAdapter(
 
     override fun onBindViewHolder(holder: MainRecyclerViewHolder, position: Int) {
         (holder as? MainRecyclerViewHolder)?.bind(response[position])
-        holder.itemView.setOnClickListener {
-            val action = ViewPagerFragmentDirections.actionViewPagerFragmentToFragmentAllDetail(
-                response[position]
-            )
-            it.findNavController().navigate(action)
-        }
 
     }
 
@@ -71,3 +53,9 @@ class MainRecyclerAdapter(
     }
 }
 
+class MainRecyclerViewHolder(val binding: ProjectRecyclerViewItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    fun bind(data: GetCategoryPostDto) {
+        binding.data = data
+        binding.executePendingBindings()
+    }
+}

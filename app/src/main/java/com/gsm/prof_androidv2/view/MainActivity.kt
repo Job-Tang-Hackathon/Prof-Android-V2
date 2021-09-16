@@ -8,12 +8,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.firebase.auth.FirebaseAuth
 import com.gsm.prof_androidv2.R
 import com.gsm.prof_androidv2.databinding.ActivityMainBinding
-import com.gsm.prof_androidv2.view.viewpager.ViewPagerAdapter
 import com.gsm.prof_androidv2.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         setupSpinnerHandler()
         firstSpinner()
         observeViewModel()
+        initViewPagerTabLayout()
     }
 
     private fun firstSpinner(){
@@ -59,7 +60,21 @@ class MainActivity : AppCompatActivity() {
         binding.spinner.setSelection(state)
     }
 
+    private fun initViewPagerTabLayout(){
+        val adapter = ViewPagerAdapter(this)
+        binding.viewPager2.adapter = adapter
 
+        TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
+            when (position) {
+                0 -> {
+                    tab.text = "전체 게시물"
+                }
+                1 -> {
+                    tab.text = "내 게시물"
+                }
+            }
+        }.attach()
+    }
 
     private fun observeViewModel(){
         mainViewModel.getPostResponse.observe(this, Observer {
