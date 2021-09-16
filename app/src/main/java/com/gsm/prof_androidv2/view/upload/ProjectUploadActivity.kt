@@ -1,5 +1,6 @@
 package com.gsm.prof_androidv2.view.upload
 
+import android.app.ProgressDialog
 import android.content.ContentValues.TAG
 import android.content.Intent
 import android.net.Uri
@@ -23,6 +24,11 @@ import com.gsm.prof_androidv2.utils.showHorizontal
 import com.gsm.prof_androidv2.viewmodel.ActionType
 import com.gsm.prof_androidv2.viewmodel.UploadViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.SimpleDateFormat
+import java.util.*
+import com.google.firebase.storage.StorageReference
+import com.gsm.prof_androidv2.utils.Utils.storageURI
+
 
 @AndroidEntryPoint
 class ProjectUploadActivity : AppCompatActivity() {
@@ -31,7 +37,6 @@ class ProjectUploadActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<UploadViewModel>()
     lateinit var adapter: UploadAdapter
-
 
     companion object {
         var photoIndex: Int = 0
@@ -69,7 +74,7 @@ class ProjectUploadActivity : AppCompatActivity() {
 
 
     fun uploadBtn() {
-
+        imgUpLoad()
     }
 
     fun observerData() {
@@ -129,4 +134,27 @@ class ProjectUploadActivity : AppCompatActivity() {
         }
 
     }
+
+    fun imgUpLoad() {
+        viewModel.progress()
+        val formatter = SimpleDateFormat("yyyyMMHH_mmss")
+        Log.d("로그","값 : ${viewModel.photocnt.value}")
+        for (i in 0 until viewModel.photocnt.value!!-1) {
+            viewModel.cnt.observe(this, Observer {
+                viewModel.imgUpLoad(formatter)
+                Log.d(TAG, "imgUpLoadActivity: $it")
+            })
+      }
+        viewModel.loadingToast.observe(this, Observer {
+            it.getContentIfNotHandled()?.let {
+                viewModel.loadingText.observe(this, Observer {
+                    Toast.makeText(this, "$it", Toast.LENGTH_SHORT).show()
+                })
+            }
+        })
+
+
+    }
+
+
 }
