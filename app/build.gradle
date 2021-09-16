@@ -94,4 +94,12 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
+
+    // Preferences DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+    implementation "androidx.datastore:datastore-core:1.0.0"
+
+    //마스크 애니메이션
+    //implementation 'com.github.christophesmet:android_maskable_layout:v1.3.1'
+
 }

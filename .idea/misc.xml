@@ -3,12 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.17135416666666667" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/drawable/auth_login_btn.xml" value="0.31979166666666664" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/drawable/google_login_btn.xml" value="0.31979166666666664" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.17135416666666667" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/drawable/login_edittext.xml" value="0.11203703703703703" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/drawable/search_frame.xml" value="0.2703125" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/drawable/select_picture_btn.xml" value="0.2703125" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/activity_category.xml" value="0.2" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/activity_project_upload.xml" value="0.264" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/activity_sign_in.xml" value="0.264" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/activity_sign_up.xml" value="0.176" />
@@ -20,6 +23,12 @@
         <entry key="..\:/Users/s2000/AndroidStudioProjects/Prof-Android-V2/app/src/main/res/layout/activity_sign_up.xml" value="0.2" />
         <entry key="..\:/Users/s2000/AndroidStudioProjects/Prof-Android-V2/app/src/main/res/layout/activity_splash.xml" value="0.25625" />
         <entry key="..\:/Users/s2000/AndroidStudioProjects/Prof-Android-V2/app/src/main/res/layout/upload_item.xml" value="0.3294270833333333" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/fragment_all_post.xml" value="0.264" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/main_spinner_item.xml" value="0.1" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/project_recycler_view_item.xml" value="0.16302083333333334" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.17135416666666667" />
+        <entry key="..\:/Users/apple/StudioProjects/Prof-Android-V2/app/src/main/res/layout/fragment_all_post.xml" value="0.17806484295845998" />
+        <entry key="..\:/Users/apple/StudioProjects/Prof-Android-V2/app/src/main/res/layout/fragment_my_post.xml" value="0.17806484295845998" />
       </map>
     </option>
   </component>
