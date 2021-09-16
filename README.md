@@ -1,4 +1,6 @@
-## 브랜치 기능 설명
+
+## <p align="center"> ![제목을-입력해주세요_-003](https://user-images.githubusercontent.com/67040465/133650218-45ea774e-cd7e-4632-b43f-c0af0d1e2aa2.jpg)</p>
+## 각 브랜치 기능 설명<br>
 **dev** : 개발된 기능들을 합치는 곳<br>
 **feature/category** : 카테고리 화면<br>
 **feature/post** : 메인이 되는 게시물을 보는 화면<br>
