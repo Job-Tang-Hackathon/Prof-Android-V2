@@ -44,23 +44,26 @@ class MyPostFragment : Fragment() {
         }
         mainViewModel.getMyPostResponse.observe(requireActivity(), androidx.lifecycle.Observer {
             //게시물 있음
-            Log.d("로그","getMyPostResponse : ${it.result.id}")
-            if (it.result.data != null){
-
+            Log.d("하","$it, ${it.documents}")
+            if (!it.isEmpty){
+                Log.d("로그","여기 MyPostFragment 1")
                 initRecyclerView()
                 mainViewModel.setGetMyPostNull(false)
 
             }else{
                 //게시물 없음
+                Log.d("로그","여기 MyPostFragment 2")
                 mainViewModel.setGetMyPostNull(true)
             }
         })
 
         mainViewModel.getMyPostNull.observe(requireActivity(), androidx.lifecycle.Observer {
             if(it == true){
+                Log.d("로그","여기 getMyPostNull 1")
                 binding.myPostRecyclerView.visibility = View.GONE
                 binding.notFound.visibility = View.VISIBLE
             }else{
+                Log.d("로그","여기 getMyPostNull 2")
                 binding.myPostRecyclerView.visibility = View.VISIBLE
                 binding.notFound.visibility = View.GONE
             }

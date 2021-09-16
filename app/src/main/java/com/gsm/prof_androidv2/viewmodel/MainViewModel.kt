@@ -19,14 +19,22 @@ class MainViewModel @Inject constructor(
     private val _getPostResponse: MutableLiveData<Task<QuerySnapshot>> = MutableLiveData<Task<QuerySnapshot>>()
 
     //선택한 카테고리의 내 게시물 저장
-    val getMyPostResponse : LiveData<Task<DocumentSnapshot>> get() = _getMyPostResponse
-    private val _getMyPostResponse: MutableLiveData<Task<DocumentSnapshot>> = MutableLiveData<Task<DocumentSnapshot>>()
+    val getMyPostResponse : LiveData<QuerySnapshot> get() = _getMyPostResponse
+    private val _getMyPostResponse = MutableLiveData<QuerySnapshot>()
 
     val getAllPostNull : LiveData<Boolean> get() = _getAllPostNull
     private val _getAllPostNull: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
 
     val getMyPostNull : LiveData<Boolean> get() = _getMyPostNull
     private val _getMyPostNull: MutableLiveData<Boolean> = MutableLiveData<Boolean>()
+
+    //전체 게시물 개수
+    val allPostCount : LiveData<Int> get() = _allPostCount
+    private val _allPostCount = MutableLiveData<Int>()
+
+    //내 게시물 개수
+    val myPostCount : LiveData<Int> get() = _myPostCount
+    private val _myPostCount = MutableLiveData<Int>()
 
     //선택한 카테고리의 모든 게시물 가져오기
     fun getCategoryPost(state:String) = repository.getCategoryPost(state)
@@ -40,7 +48,7 @@ class MainViewModel @Inject constructor(
     }
 
     //선택한 카테고리의 내 게시물 저장
-    fun setGetMyPostResponse(response: Task<DocumentSnapshot>){
+    fun setGetMyPostResponse(response: QuerySnapshot){
         _getMyPostResponse.value = response
     }
 
@@ -54,5 +62,13 @@ class MainViewModel @Inject constructor(
     //게시물이 없는지 체크 true = 게시물 없음, false = 게시물 있음
     fun setGetMyPostNull(check : Boolean){
         _getMyPostNull.value = check
+    }
+
+    fun setAllPostCount(count : Int){
+        _allPostCount.value = count
+    }
+
+    fun setMyPostCount(count : Int){
+        _myPostCount.value = count
     }
 }

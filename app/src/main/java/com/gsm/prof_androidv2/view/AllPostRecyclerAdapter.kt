@@ -14,7 +14,7 @@ import javax.inject.Inject
 import kotlin.properties.Delegates
 
 class MainRecyclerAdapter(
-    private val viewModel : MainViewModel
+  viewModel : MainViewModel
 ) : RecyclerView.Adapter<MainRecyclerViewHolder>() {
     var response : ArrayList<GetCategoryPostDto> = arrayListOf()
     var count by Delegates.notNull<Int>()
