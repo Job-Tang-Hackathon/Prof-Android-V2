@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="activity"
+            type="com.gsm.prof_androidv2.view.SignInActivity" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".view.SignInActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="40dp"
+                            android:fontFamily="@font/gugiregular"
+                            android:includeFontPadding="false"
+                            android:text="PROF"
+                            android:textColor="@color/main_color"
+                            android:textSize="40sp" />
+
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="50dp"
+                            android:fontFamily="@font/notosanskrblack"
+                            android:includeFontPadding="false"
+                            android:text="계정에 로그인 하세요"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:background="@drawable/login_edittext"
+                            android:fontFamily="@font/notosanskrmedium"
+                            android:hint="학교 이메일을 입력해 주세요"
+                            android:includeFontPadding="false"
+                            android:padding="15dp" />
+
+
+                        <EditText
+                            android:id="@+id/password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/login_edittext"
+                            android:fontFamily="@font/notosanskrmedium"
+                            android:hint="비밀번호를 입력해 주세요"
+                            android:includeFontPadding="false"
+                            android:inputType="textPassword"
+                            android:padding="15dp" />
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/login_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/auth_login_btn"
+                        android:elevation="10dp"
+                        android:fontFamily="@font/notosanskrmedium"
+                        android:gravity="center"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="20dp"
+                        android:onClick="@{activity::loginBtnClick}"
+                        android:layout_marginStart="20dp"
+                        android:includeFontPadding="false"
+                        android:padding="17dp"
+                        android:text="로그인 하기"
+                        android:textColor="@color/white" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_centerInParent="true"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginStart="20dp"
+                            android:background="#CCCCCC" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="또는"
+                            android:layout_centerInParent="true"
+                            android:background="@color/white"
+                            android:textColor="#CCCCCC"
+                            android:padding="10dp" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/create_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/google_login_btn"
+                        android:elevation="10dp"
+                        android:fontFamily="@font/notosanskrmedium"
+                        android:gravity="center"
+                        android:onClick="@{activity::signUpBtnClick}"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginStart="20dp"
+                        android:includeFontPadding="false"
+                        android:padding="17dp"
+                        android:text="회원가입 하기"
+                        android:textColor="@color/white" />
+
+                    <RelativeLayout
+                        android:id="@+id/google_login_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/google_login_btn"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="15dp"
+                        android:onClick="@{activity::googleLoginBtnClick}"
+                        android:layout_marginEnd="20dp"
+                        android:elevation="10dp"
+                        android:layout_marginBottom="20dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:elevation="10dp"
+                            android:fontFamily="@font/notosanskrmedium"
+                            android:gravity="center"
+                            android:includeFontPadding="false"
+                            android:padding="17dp"
+                            android:text="구글로 시작하기"
+                            android:textColor="@color/white" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/google_logo"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="30dp" />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:visibility="invisible"
+                android:layout_centerInParent="true"
+                android:indeterminateTint="#5780E6"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>
