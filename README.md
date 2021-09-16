@@ -22,3 +22,13 @@
 > #### feature/signup : 회원가입 <br>
 > #### feature/splash : Splash(처음 시작) 화면<br>
 > #### feature/upload : Project를 업로드하는 화면<br>
+#### <hr>
+#### <br>
+## ***Functional implementer*** 
+#### <br>
+> #### feature/category : 박상선<br>
+> #### feature/post : 박상선, 양태웅, 차경민<br>
+> #### feature/signin : 박상선<br>
+> #### feature/signup : 박상선 <br>
+> #### feature/splash : 박상선, 정민혁<br>
+> #### feature/upload : 김대영<br>
