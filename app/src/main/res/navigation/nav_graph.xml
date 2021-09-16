@@ -12,16 +12,17 @@
         android:label="AllPostFragment" >
 
 
-        <action
-            android:id="@+id/action_allPostFragment_to_fragmentAllDetail"
-            app:destination="@id/fragmentAllDetail" />
+
+
     </fragment>
 
     <fragment
         android:id="@+id/myPostFragment"
         tools:layout="@layout/fragment_my_post"
         android:name="com.gsm.prof_androidv2.view.MyPostFragment"
-        android:label="MyPostFragment" />
+        android:label="MyPostFragment" >
+
+    </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
         tools:layout="@layout/fragment_viewpager"
@@ -30,6 +31,7 @@
         <action
             android:id="@+id/action_viewPagerFragment_to_fragmentAllDetail"
             app:destination="@id/fragmentAllDetail" />
+
     </fragment>
     <fragment
         android:id="@+id/fragmentAllDetail"
@@ -39,5 +41,9 @@
         <argument
             android:name="all_data"
             app:argType="com.gsm.prof_androidv2.model.dto.GetCategoryPostDto" />
+
+        <action
+            android:id="@+id/action_fragmentAllDetail_to_viewPagerFragment3"
+            app:destination="@id/viewPagerFragment" />
     </fragment>
 </navigation>
