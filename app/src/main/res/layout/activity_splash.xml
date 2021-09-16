@@ -4,14 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".view.SplashActivity">
 
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/splash_background" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -30,7 +25,7 @@
             android:fontFamily="@font/gugiregular"
             android:includeFontPadding="false"
             android:text="우리학교"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="30sp" />
 
         <TextView
@@ -40,7 +35,7 @@
             android:fontFamily="@font/gugiregular"
             android:includeFontPadding="false"
             android:text="학생들의"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="30sp"
 
             />
@@ -51,8 +46,9 @@
             android:layout_marginBottom="3dp"
             android:fontFamily="@font/gugiregular"
             android:includeFontPadding="false"
-            android:text="프로젝트가 궁금하다면?"
-            android:textColor="@color/white"
+
+            android:text="프로젝트"
+            android:textColor="@color/black"
             android:textSize="30sp"
 
             />

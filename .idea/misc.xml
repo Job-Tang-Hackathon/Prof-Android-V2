@@ -24,10 +24,11 @@
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.17135416666666667" />
         <entry key="..\:/Users/apple/StudioProjects/Prof-Android-V2/app/src/main/res/layout/fragment_all_post.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/apple/StudioProjects/Prof-Android-V2/app/src/main/res/layout/fragment_my_post.xml" value="0.17806484295845998" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2609375" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

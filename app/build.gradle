@@ -98,6 +98,9 @@ dependencies {
     implementation "androidx.datastore:datastore-preferences:1.0.0"
     implementation "androidx.datastore:datastore-core:1.0.0"
 
+    // text flexible animation
+    implementation 'com.github.sarnavakonar:TextWriter:v1.0'
+
     //마스크 애니메이션
     //implementation 'com.github.christophesmet:android_maskable_layout:v1.3.1'
 
