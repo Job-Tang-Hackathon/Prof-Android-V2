@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         setupSpinnerHandler()
         firstSpinner()
         observeViewModel()
-        initViewPagerTabLayout()
+        binding.postCount.visibility = View.VISIBLE
     }
 
     private fun firstSpinner(){
@@ -60,21 +60,7 @@ class MainActivity : AppCompatActivity() {
         binding.spinner.setSelection(state)
     }
 
-    private fun initViewPagerTabLayout(){
-        val adapter = ViewPagerAdapter(this)
-        binding.viewPager2.adapter = adapter
 
-        TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
-            when (position) {
-                0 -> {
-                    tab.text = "전체 게시물"
-                }
-                1 -> {
-                    tab.text = "내 게시물"
-                }
-            }
-        }.attach()
-    }
 
     private fun observeViewModel(){
         mainViewModel.getPostResponse.observe(this, Observer {
@@ -88,6 +74,8 @@ class MainActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     if (task != null){
+                        binding.postCount.text = "총 ${task.result.size()}개의 항목"
+                        mainViewModel.setAllPostCount(task.result.size())
 
                         mainViewModel.setGetPostResponse(task)
                         if (task.result.documents.toString() == "[]") {
@@ -108,14 +96,31 @@ class MainActivity : AppCompatActivity() {
 
     //선택한 카테고리의 내 게시물 가져오기
     private fun getMyPost(state:String, uid : String){
+        Log.d("로그","내 게시물을 가져오라고 시킴 - state : $state, uid : $uid")
         mainViewModel.getMyPost(state, uid)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.d("로그","getMyPost : ${task.result.data}")
-                    mainViewModel.setGetMyPostResponse(task)
-
+            /*    .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d("로그","getMyPost : ${task.result.size()}, ${task.result.isEmpty}, ${task.result.}")
+                        mainViewModel.setGetMyPostResponse(task)
+                        binding.postCount.text = "총 ${task.result.size()}개의 항목"
+                        mainViewModel.setAllPostCount(task.result.size())
+                    }else{
+                        Log.d("로그","isSuccessful")
+                    }
+                }*/
+            .addOnSuccessListener {
+                var id = ""
+                for (document in it) {
+                    Log.i("로그", "${document.id} => ${document.data}")
+                    id = document.id
+                }
+                Log.d("로그","getMyPostOnSuccess - $it, ${it.size()}, ${it.metadata}, ${it.isEmpty}, $id")
+                if (id=="[]"){
+                    mainViewModel.setGetAllPostNull(true)
+                    Log.d("로그","여기 1")
                 }else{
-                    Log.d("로그","isSuccessful")
+                    mainViewModel.setGetMyPostResponse(it)
+                    Log.d("로그","여기 2")
                 }
             }
             .addOnFailureListener { exception ->
