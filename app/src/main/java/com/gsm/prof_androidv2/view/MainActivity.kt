@@ -146,6 +146,21 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
+    //검색한 게시물 가져오기
+    fun getSearchedPost(keyword: String) {
+        mainViewModel.getSearchedPost(keyword)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d("로그","getMyPost : ${task.result}")
+                    mainViewModel.setGetSearchedPostResponse(task)
+
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("로그","addOnFailureListener : $exception")
+                Toast.makeText(this,"서버에 오류가 발생했습니다",Toast.LENGTH_SHORT).show()
+            }
+    }
 
     private fun setupSpinnerTag() {
         binding.spinner.adapter = ArrayAdapter.createFromResource(

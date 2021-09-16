@@ -18,6 +18,8 @@ class FirebaseDataSource @Inject constructor(
 ) {
     fun getCategoryPost(category: String) = firebaseStore.collection(category).get()
 
+    fun getSearchedPost(keyword : String) = firebaseStore.collection("all").whereEqualTo(keyword, true).get()
+
     fun getMyPost(category: String, uid: String): Task<QuerySnapshot> {
         Log.d("로그","선택된 카테고리 : $category")
         return firebaseStore.collection(category).whereEqualTo("uid", uid).get()

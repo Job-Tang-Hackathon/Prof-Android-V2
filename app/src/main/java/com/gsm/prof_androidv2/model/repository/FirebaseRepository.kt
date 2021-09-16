@@ -11,4 +11,6 @@ class FirebaseRepository @Inject constructor(
     fun getCategoryPost(category : String) = dataSource.getCategoryPost(category)
 
     fun getMyPost(category: String, uid: String) = dataSource.getMyPost(category, uid)
+
+    fun getSearchedPost(keyword : String) = dataSource.getSearchedPost(keyword)
 }
