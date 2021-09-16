@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.gsm.prof_androidv2.R
 import com.gsm.prof_androidv2.databinding.FragmentAllPostBinding
 import com.gsm.prof_androidv2.utils.showVertical
@@ -55,6 +57,13 @@ class AllPostFragment : Fragment() {
                 mainViewModel.setGetAllPostNull(true)
             }
 
+        })
+
+
+        mainViewModel.message.observe(requireActivity(), Observer {
+            when(it){
+                "blank" -> Toast.makeText(requireContext(),"검색된 게시물이 없습니다", Toast.LENGTH_SHORT).show()
+            }
         })
 
         mainViewModel.getAllPostNull.observe(requireActivity(), androidx.lifecycle.Observer {
