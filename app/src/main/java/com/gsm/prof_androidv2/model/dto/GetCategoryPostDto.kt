@@ -1,5 +1,9 @@
 package com.gsm.prof_androidv2.model.dto
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class GetCategoryPostDto(
     val fullExplanation: String = "",
     val oneLineExplanation: String = "",
@@ -8,4 +12,4 @@ data class GetCategoryPostDto(
     val state: String ="",
     val tag: String ="",
     val title: String =""
-)
+): Parcelable
