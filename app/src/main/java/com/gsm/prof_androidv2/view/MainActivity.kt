@@ -160,9 +160,11 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.getSearchedPost(keyword)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d("로그","getSearchedPost : ${task.result}")
                     mainViewModel.setGetSearchedPostResponse(task)
 
+                    for (document in task.result) {
+                        Log.i("로그", "search : ${document.id} => ${document.data}")
+                    }
                 }
             }
             .addOnFailureListener { exception ->
