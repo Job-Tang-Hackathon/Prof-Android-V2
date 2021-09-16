@@ -1,4 +1,3 @@
-
 package com.gsm.prof_androidv2.view
 
 import android.content.Intent
@@ -9,7 +8,7 @@ import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.gsm.prof_androidv2.R
 
-class SplashActivity  : AppCompatActivity() {
+class SplashActivity : AppCompatActivity() {
     lateinit var uid :String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
