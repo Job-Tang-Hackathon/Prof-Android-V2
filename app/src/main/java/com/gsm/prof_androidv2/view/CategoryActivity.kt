@@ -59,7 +59,6 @@ class CategoryActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("state",state)
         startActivity(intent)
-        finish()
     }
     fun upLoad(view: View){
         val intent = Intent(this, ProjectUploadActivity::class.java)

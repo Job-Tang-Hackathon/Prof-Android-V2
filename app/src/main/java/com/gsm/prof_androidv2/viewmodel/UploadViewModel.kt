@@ -37,24 +37,14 @@ class UploadViewModel @Inject constructor(
     private val _visibleBtn = MutableLiveData<Boolean>()
     private val _loadingText = MutableLiveData<String>()
     private val _title = MutableLiveData<UploadDto>()
-    private val _photo = MutableLiveData<UploadDto>()
-    private val _people = MutableLiveData<UploadDto>()
     private val _tag = MutableLiveData<UploadDto>()
     private val _state = MutableLiveData<UploadDto>()
-    private val _github = MutableLiveData<UploadDto>()
-    private val _fullExplanation = MutableLiveData<UploadDto>()
-    private val _oneLineExplanation = MutableLiveData<UploadDto>()
     private val _photoUrl = ArrayList<String>()
 
     val photoUri: ArrayList<String> = _photoUrl
     val title: LiveData<UploadDto> = _title
     val tag: LiveData<UploadDto> = _tag
-    val photo: LiveData<UploadDto> = _photo
-    val people: LiveData<UploadDto> = _people
     val state: LiveData<UploadDto> = _state
-    val oneLineExplanation: LiveData<UploadDto> = _oneLineExplanation
-    val fullExplanation: LiveData<UploadDto> = _fullExplanation
-    val github: LiveData<UploadDto> = _github
     val loadingText: LiveData<String> = _loadingText
     val loadingToast: LiveData<Event<Boolean>> = _loadingToast
     val visible: LiveData<Boolean> = _visible

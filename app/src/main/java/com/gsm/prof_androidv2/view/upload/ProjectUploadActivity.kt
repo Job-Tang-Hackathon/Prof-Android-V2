@@ -146,7 +146,6 @@ class ProjectUploadActivity : AppCompatActivity() {
 
     fun uploadBtn() {
         imgUpLoad()
-        finish()
     }
 
     fun observerData() {

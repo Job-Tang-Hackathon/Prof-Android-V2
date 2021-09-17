@@ -44,6 +44,15 @@ class MainActivity : AppCompatActivity() {
         firstSpinner()
     }
 
+    fun upload(){
+        val intent = Intent(this,ProjectUploadActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun backBtn(){
+        finish()
+    }
+
 
     private fun firstSpinner() {
         val state: Int = when (intent.getStringExtra("state")) {
