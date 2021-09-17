@@ -40,7 +40,7 @@ class AllPostFragment : Fragment() {
 
     private fun initRecyclerView() {
         binding.allPostRecyclerView.showVertical(requireContext())
-        binding.allPostRecyclerView.adapter = MainRecyclerAdapter(mainViewModel)
+        binding.allPostRecyclerView.adapter = MainRecyclerAdapter(requireContext(), Type.ALL, mainViewModel)
     }
 
 

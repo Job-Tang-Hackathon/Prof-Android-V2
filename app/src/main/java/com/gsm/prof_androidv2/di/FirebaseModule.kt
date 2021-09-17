@@ -21,14 +21,20 @@ object FirebaseModule {
 
     @Provides
     @Singleton
-    fun provideFirestore() = FirebaseDatabase.getInstance()
+    fun provideDatabase(): FirebaseDatabase {
+        return FirebaseDatabase.getInstance()
+    }
 
     @Provides
     @Singleton
-    fun provideFirebaseStorage() = FirebaseStorage.getInstance()
+    fun provideFirebaseStorage(): FirebaseStorage {
+        return FirebaseStorage.getInstance()
+    }
 
     @Provides
     @Singleton
-    fun provideFirebaseStore() = FirebaseFirestore.getInstance()
+    fun provideFirebaseStore() :FirebaseFirestore{
+        return FirebaseFirestore.getInstance()
+    }
 
 }

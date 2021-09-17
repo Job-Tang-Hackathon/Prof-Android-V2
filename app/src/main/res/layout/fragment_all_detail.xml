@@ -10,7 +10,7 @@
             type="com.gsm.prof_androidv2.model.dto.GetCategoryPostDto" />
     </data>
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -161,16 +161,18 @@
 
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="9dp"
                 android:layout_marginRight="25dp"
                 app:layout_constraintEnd_toEndOf="@+id/view3"
+                tool:listitem="@layout/photo_recyclerview_item"
                 app:layout_constraintStart_toStartOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@id/view3" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </layout>

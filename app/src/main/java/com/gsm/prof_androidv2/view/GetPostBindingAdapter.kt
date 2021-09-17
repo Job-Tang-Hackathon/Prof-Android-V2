@@ -1,7 +1,9 @@
 package com.gsm.prof_androidv2.view
 
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 
 object GetPostBindingAdapter {
 
@@ -32,4 +34,6 @@ object GetPostBindingAdapter {
     fun getPostState(text: TextView, state: String) {
         text.text = state
     }
+
+
 }

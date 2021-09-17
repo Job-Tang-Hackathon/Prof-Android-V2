@@ -12,4 +12,16 @@
         <item>정보보안</item>
         <item>로보틱스</item>
     </string-array>
+
+    <string-array name="UploadListItem">
+        <item>안드로이드</item>
+        <item>iOS</item>
+        <item>프론트엔드</item>
+        <item>백엔드</item>
+        <item>인공지능</item>
+        <item>게임개발</item>
+        <item>IoT</item>
+        <item>정보보안</item>
+        <item>로보틱스</item>
+    </string-array>
 </resources>
