@@ -34,6 +34,8 @@ class ViewPagerFragment : Fragment() {
         (activity as MainActivity).binding.apply {
             this.searchLayout.visibility= VISIBLE
             this.spinnerLayout.visibility=VISIBLE
+            this.fabBack.visibility= VISIBLE
+            this.fabUpload.visibility= VISIBLE
         }
     }
 

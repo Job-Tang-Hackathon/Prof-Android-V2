@@ -23,6 +23,8 @@ class FragmentDetail : Fragment() {
         (activity as MainActivity).binding.apply {
             this.spinnerLayout.visibility=GONE
             this.searchLayout.visibility=GONE
+            this.fabBack.visibility= GONE
+            this.fabUpload.visibility= GONE
         }
         binding.data = args.allData
 
