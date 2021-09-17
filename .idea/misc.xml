@@ -21,6 +21,10 @@
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/project_recycler_view_item.xml" value="0.16302083333333334" />
         <entry key="..\:/Users/apple/StudioProjects/Prof-Android-V2/app/src/main/res/layout/fragment_all_post.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/apple/StudioProjects/Prof-Android-V2/app/src/main/res/layout/fragment_my_post.xml" value="0.17806484295845998" />
+        <entry key="app/src/main/res/layout/activity_category.xml" value="0.2578125" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2609375" />
+        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.2578125" />
+        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2578125" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2609375" />
       </map>
     </option>
