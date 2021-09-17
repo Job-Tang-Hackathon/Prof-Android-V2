@@ -40,11 +40,10 @@ class UploadAdapter(private val viewModel: UploadViewModel) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if(photoIndex != 0){
            Glide.with(holder.itemView.context).load(viewModel.imgs.value?.get(position))
                .override(240,240)
                .into(holder.itemView.findViewById(R.id.upload_img))
-        }
+
 
         holder.itemView.findViewById<ImageView>(R.id.upload_img_cancle).setOnClickListener {
             viewModel.deleteImg(position)

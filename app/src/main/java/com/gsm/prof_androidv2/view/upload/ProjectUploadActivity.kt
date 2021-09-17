@@ -45,10 +45,11 @@ class ProjectUploadActivity : AppCompatActivity() {
 
     private val auth = FirebaseAuth.getInstance()
     val uid = auth.currentUser?.uid
+    var state = "android"
 
 
     companion object {
-        var photoIndex: Int = 0
+        var photoIndex: Int = -1
     }
 
     override fun onStart() {
@@ -79,7 +80,6 @@ class ProjectUploadActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                var state = "android"
                 when (position) {
                     0 -> {
                         tag = "안드로이드"
@@ -145,6 +145,7 @@ class ProjectUploadActivity : AppCompatActivity() {
 
     fun uploadBtn() {
         imgUpLoad()
+        storeUpload()
         finish()
     }
 
@@ -173,35 +174,30 @@ class ProjectUploadActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 200) {
-            when (resultCode) {
-                RESULT_OK -> {
-                    data?.let {
-                        when {
-                            it.data != null -> viewModel.setImg(it.data!!)
-                            it.clipData != null -> {
-                                val clip = it.clipData
-                                val size = clip?.itemCount!!
-
-                                if (size > 5 || photoIndex + size > 5) {
-                                    Toast.makeText(this, "사진은 최대 5장까지 가능합니다.", Toast.LENGTH_SHORT)
-                                        .show()
-                                    return
-                                }
-                                for (i in 0 until size) {
-                                    val item = clip.getItemAt(i).uri
-                                    viewModel.setImg(item)
-                                    viewModel.photoCount(ActionType.PLUS, 1)
-
-                                }
-
-
-                            }
-                        }
+            if (resultCode == RESULT_OK && requestCode == 200) {
+                if (data?.clipData != null) { // 사진 여러개 선택한 경우
+                    val count = data.clipData!!.itemCount
+                    if (count > 5 || count + photoIndex > 5) {
+                        Toast.makeText(applicationContext, "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG)
+                        return
+                    }
+                    for (i in 0 until count) {
+                        val imageUri = data.clipData!!.getItemAt(i).uri
+                        viewModel.setImg(imageUri)
+                        viewModel.photoCount(ActionType.PLUS, 1)
                     }
 
+                } else { // 단일 선택
+                    data?.data?.let { uri ->
+                        val imageUri: Uri? = data?.data
+                        if (imageUri != null) {
+                            viewModel.setImg(imageUri)
+                            viewModel.photoCount(ActionType.PLUS, 1)
+                        }
+                    }
                 }
-            }
 
+            }
         }
 
     }
@@ -209,17 +205,11 @@ class ProjectUploadActivity : AppCompatActivity() {
     fun imgUpLoad() {
         val formatter = SimpleDateFormat("yyyyMMHH_mmss")
         Log.d("로그", "값 : ${viewModel.photocnt.value}")
-        for (i in 0 until photoIndex - 1) {
+        for (i in 0 until photoIndex ) {
             viewModel.cnt.observe(this, Observer {
-                if (uid != null && photoIndex != 0) {
+                if (uid != null) {
                     viewModel.progress()
-                    viewModel.imgUpLoad(formatter, uid,title = binding.postTitle.text.toString(),
-                        fullLine = binding.postFull.text.toString(),
-                        oneLine = binding.postContents.text.toString(),
-                        people = binding.postPeople.text.toString(),
-                        tag = binding.postTag.text.toString(),
-                        link = binding.postGithub.text.toString(),
-                        state = binding.postState.text.toString(),)
+                    viewModel.imgUpLoad(formatter, uid)
                 }
                 Log.d(TAG, "imgUpLoadActivity: $it")
             })
@@ -233,9 +223,7 @@ class ProjectUploadActivity : AppCompatActivity() {
             }
         })
 
-
     }
-
 
 
     fun backBtn() {
@@ -250,5 +238,20 @@ class ProjectUploadActivity : AppCompatActivity() {
         )
     }
 
+    fun storeUpload() {
+        if (uid != null) {
+            viewModel.storeUpload(
+                title = binding.postTitle.text.toString(),
+                fullLine = binding.postFull.text.toString(),
+                oneLine = binding.postContents.text.toString(),
+                people = binding.postPeople.text.toString(),
+                tag = binding.postTag.text.toString(),
+                link = binding.postGithub.text.toString(),
+                state = binding.postState.text.toString(),
+                category = state, uid = uid
+            )
+        }
+
+    }
 
 }

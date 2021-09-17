@@ -4,7 +4,6 @@
     xmlns:tool="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="data"
             type="com.gsm.prof_androidv2.model.dto.GetCategoryPostDto" />

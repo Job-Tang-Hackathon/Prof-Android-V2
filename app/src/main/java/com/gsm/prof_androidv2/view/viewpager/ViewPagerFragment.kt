@@ -3,6 +3,8 @@ package com.gsm.prof_androidv2.view.viewpager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -25,20 +27,24 @@ class ViewPagerFragment : Fragment() {
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
-        (activity as MainActivity).binding.apply {
-            this.searchLayout.visibility= View.VISIBLE
-            this.spinnerLayout.visibility= View.VISIBLE
-        }
-    }
+ 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewPagerTabLayout()
     }
 
-    private fun initViewPagerTabLayout() {
+    override fun onResume() {
+        super.onResume()
+        (activity as MainActivity).binding.apply {
+            this.searchLayout.visibility= VISIBLE
+            this.spinnerLayout.visibility=VISIBLE
+            this.fabBack.visibility= VISIBLE
+            this.fabUpload.visibility= VISIBLE
+        }
+    }
+
+    private fun initViewPagerTabLayout(){
         val adapter = ViewPagerAdapter(requireActivity())
         binding.viewPager2.adapter = adapter
 
