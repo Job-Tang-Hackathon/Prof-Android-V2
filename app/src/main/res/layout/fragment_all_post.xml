@@ -14,9 +14,9 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/all_post_recycler_view"
-            android:paddingTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:paddingTop="20dp" />
         <LinearLayout
             android:id="@+id/not_found"
             android:visibility="gone"

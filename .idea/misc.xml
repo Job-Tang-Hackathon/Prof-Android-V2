@@ -10,26 +10,23 @@
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/drawable/project_upload_edittext.xml" value="0.2703125" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/drawable/search_frame.xml" value="0.2703125" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/drawable/select_picture_btn.xml" value="0.2703125" />
-        <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/activity_category.xml" value="0.2" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/activity_category.xml" value="0.152" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/activity_main.xml" value="0.16302083333333334" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/activity_project_upload.xml" value="0.264" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/activity_sign_in.xml" value="0.264" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/activity_sign_up.xml" value="0.176" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/activity_splash.xml" value="0.1634963768115942" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/fragment_all_detail.xml" value="0.19479166666666667" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/fragment_all_post.xml" value="0.264" />
+        <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/fragment_my_post.xml" value="0.11730072463768115" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/main_spinner_item.xml" value="0.1" />
         <entry key="..\:/Users/apple/AndroidStudioProjects/ProfAndroidV2/app/src/main/res/layout/project_recycler_view_item.xml" value="0.16302083333333334" />
         <entry key="..\:/Users/apple/StudioProjects/Prof-Android-V2/app/src/main/res/layout/fragment_all_post.xml" value="0.17806484295845998" />
         <entry key="..\:/Users/apple/StudioProjects/Prof-Android-V2/app/src/main/res/layout/fragment_my_post.xml" value="0.17806484295845998" />
-        <entry key="app/src/main/res/layout/activity_category.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2609375" />
-        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.2578125" />
-        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.2609375" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
