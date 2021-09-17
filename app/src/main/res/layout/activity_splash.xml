@@ -1,58 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    tools:context=".view.SplashActivity">
+    <data>
+
+        <variable
+            name="activity"
+            type="com.gsm.prof_androidv2.view.SplashActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.SplashActivity">
+
+        <LinearLayout
+            android:id="@+id/linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
 
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="50dp"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+            <TextView
+                android:id="@+id/t1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:fontFamily="@font/gugiregular"
+                android:includeFontPadding="false"
+                android:text="우리학교"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
 
+            <TextView
+                android:id="@+id/t2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:fontFamily="@font/gugiregular"
+                android:includeFontPadding="false"
+                android:text="학생들의"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+
+                />
+
+            <TextView
+                android:id="@+id/t3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:fontFamily="@font/gugiregular"
+                android:includeFontPadding="false"
+                android:text="프로젝트"
+                android:textColor="@color/black"
+                android:textSize="25sp"
+
+                />
+
+        </LinearLayout>
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/main_text"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
             android:fontFamily="@font/gugiregular"
-            android:includeFontPadding="false"
-            android:text="우리학교"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
+            android:text="PROF"
+            android:textColor="@color/main_color"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:fontFamily="@font/gugiregular"
-            android:includeFontPadding="false"
-            android:text="학생들의"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:fontFamily="@font/gugiregular"
-            android:includeFontPadding="false"
-
-            android:text="프로젝트"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-
-            />
-
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
