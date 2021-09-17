@@ -145,6 +145,8 @@ class ProjectUploadActivity : AppCompatActivity() {
 
     fun uploadBtn() {
         imgUpLoad()
+        storeUpload()
+        finish()
     }
 
     fun observerData() {
@@ -175,7 +177,7 @@ class ProjectUploadActivity : AppCompatActivity() {
             if (resultCode == RESULT_OK && requestCode == 200) {
                 if (data?.clipData != null) { // 사진 여러개 선택한 경우
                     val count = data.clipData!!.itemCount
-                    if (count > 5 || count+ photoIndex >5) {
+                    if (count > 5 || count + photoIndex > 5) {
                         Toast.makeText(applicationContext, "사진은 5장까지 선택 가능합니다.", Toast.LENGTH_LONG)
                         return
                     }
@@ -187,7 +189,7 @@ class ProjectUploadActivity : AppCompatActivity() {
 
                 } else { // 단일 선택
                     data?.data?.let { uri ->
-                        val imageUri : Uri? = data?.data
+                        val imageUri: Uri? = data?.data
                         if (imageUri != null) {
                             viewModel.setImg(imageUri)
                             viewModel.photoCount(ActionType.PLUS, 1)
@@ -195,55 +197,61 @@ class ProjectUploadActivity : AppCompatActivity() {
                     }
                 }
 
-        }
-    }
-
-}
-
-fun imgUpLoad() {
-    val formatter = SimpleDateFormat("yyyyMMHH_mmss")
-    Log.d("로그", "값 : ${viewModel.photocnt.value}")
-    for (i in 0 until photoIndex - 1) {
-        viewModel.cnt.observe(this, Observer {
-            if (uid != null) {
-                viewModel.progress()
-                viewModel.imgUpLoad(
-                    formatter, uid, title = binding.postTitle.text.toString(),
-                    fullLine = binding.postFull.text.toString(),
-                    oneLine = binding.postContents.text.toString(),
-                    people = binding.postPeople.text.toString(),
-                    tag = binding.postTag.text.toString(),
-                    link = binding.postGithub.text.toString(),
-                    state = binding.postState.text.toString(),
-                    category = state
-                )
             }
-            Log.d(TAG, "imgUpLoadActivity: $it")
-        })
+        }
+
     }
 
-    viewModel.loadingToast.observe(this, Observer {
-        it.getContentIfNotHandled()?.let {
-            viewModel.loadingText.observe(this, Observer {
-                Toast.makeText(this, "$it", Toast.LENGTH_SHORT).show()
+    fun imgUpLoad() {
+        val formatter = SimpleDateFormat("yyyyMMHH_mmss")
+        Log.d("로그", "값 : ${viewModel.photocnt.value}")
+        for (i in 0 until photoIndex ) {
+            viewModel.cnt.observe(this, Observer {
+                if (uid != null) {
+                    viewModel.progress()
+                    viewModel.imgUpLoad(formatter, uid)
+                }
+                Log.d(TAG, "imgUpLoadActivity: $it")
             })
         }
-    })
 
-}
+        viewModel.loadingToast.observe(this, Observer {
+            it.getContentIfNotHandled()?.let {
+                viewModel.loadingText.observe(this, Observer {
+                    Toast.makeText(this, "$it", Toast.LENGTH_SHORT).show()
+                })
+            }
+        })
+
+    }
 
 
-fun backBtn() {
-    finish()
-}
+    fun backBtn() {
+        finish()
+    }
 
-fun setSpinnerTag() {
-    binding.uploadSpinner.adapter = ArrayAdapter.createFromResource(
-        this,
-        R.array.UploadListItem,
-        R.layout.main_spinner_item
-    )
-}
+    fun setSpinnerTag() {
+        binding.uploadSpinner.adapter = ArrayAdapter.createFromResource(
+            this,
+            R.array.UploadListItem,
+            R.layout.main_spinner_item
+        )
+    }
 
+    fun storeUpload() {
+        if (uid != null) {
+            viewModel.storeUpload(
+                title = binding.postTitle.text.toString(),
+                fullLine = binding.postFull.text.toString(),
+                oneLine = binding.postContents.text.toString(),
+                people = binding.postPeople.text.toString(),
+                tag = binding.postTag.text.toString(),
+                link = binding.postGithub.text.toString(),
+                state = binding.postState.text.toString(),
+                category = state, uid = uid
+            )
+        }
+
+    }
 
 }

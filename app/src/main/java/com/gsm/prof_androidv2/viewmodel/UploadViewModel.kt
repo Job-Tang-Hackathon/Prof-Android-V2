@@ -91,18 +91,10 @@ class UploadViewModel @Inject constructor(
 
     fun imgUpLoad(
         formatter: SimpleDateFormat,
-        uid: String,
-        title: String,
-        tag: String,
-        people: String,
-        oneLine: String,
-        fullLine: String,
-        link: String,
-        state: String,
-        category:String,
+        uid: String
     ) {
         _visibleBtn.value = false
-        if (_imgs.value != null && title != "" && tag != "" && people != "" && oneLine != "" && fullLine != "" && state != "") {
+        if (_imgs.value != null) {
             val filename = formatter.format(Date()).toString() + ".png"
             val storageRef: StorageReference =
                 firebaseStorage.getReferenceFromUrl("$storageURI").child(
@@ -112,19 +104,6 @@ class UploadViewModel @Inject constructor(
             _imgs.value!!.let {
                 storageRef.putFile(it[_cnt.value!!])
                     .addOnSuccessListener {
-                        val dataInput = UploadDto(
-                            fullLine,
-                            oneLine,
-                            people,
-                            photoUri,
-                            state,
-                            tag,
-                            title,
-                            link,
-                            uid
-                        )
-                        database.collection("all").add(dataInput)
-                        database.collection("${category}").add(dataInput)
                         _loadingText.value = "업로드 성공!"
                         _loadingToast.value = Event(true)
                         _visible.value = false
@@ -145,6 +124,34 @@ class UploadViewModel @Inject constructor(
             _loadingToast.value = Event(true)
             _visible.value = false
             _visibleBtn.value = true
+        }
+    }
+
+    fun storeUpload(
+        title: String,
+        tag: String,
+        people: String,
+        oneLine: String,
+        fullLine: String,
+        link: String,
+        state: String,
+        category: String, uid: String
+    ) {
+
+        if (title != "" && tag != "" && people != "" && oneLine != "" && fullLine != "" && state != "") {
+            val dataInput = UploadDto(
+                fullLine,
+                oneLine,
+                people,
+                photoUri,
+                state,
+                tag,
+                title,
+                link,
+                uid
+            )
+            database.collection("all").add(dataInput)
+            database.collection("${category}").add(dataInput)
         }
     }
 
