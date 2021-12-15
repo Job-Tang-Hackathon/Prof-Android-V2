@@ -27,7 +27,7 @@
 #### <br>
 ## ***Functional implementer*** 
 #### <br>
-> #### feature/category : 박상선<br>
+> #### feature/category : 박상선,김대영<br>
 > #### feature/post : 박상선, 양태웅, 차경민<br>
 > #### feature/signin : 박상선<br>
 > #### feature/signup : 박상선 <br>
